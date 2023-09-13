@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
-import ViewLoan from './components/ViewLoan';
+import ViewLoans from './components/ViewLoans';
+import ViewItems from './components/ViewItems';
 
 const App = () => {
   return (
@@ -16,7 +17,8 @@ const App = () => {
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/register" element={<Register/>}/>
 
-        <Route path="/user/:id/viewLoan" element={<ViewLoan/>}/>
+        <Route path="/user/:id/viewLoan" element={<ViewLoans/>}/>
+        <Route path="/user/:id/viewItems" element={<ViewItems/>}/>
       </Routes>
       </BrowserRouter>
     </div>
