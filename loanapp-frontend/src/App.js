@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
+import ViewLoan from './components/ViewLoan';
 
 const App = () => {
   return (
@@ -13,6 +15,8 @@ const App = () => {
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/register" element={<Register/>}/>
+
+        <Route path="/user/:id/viewLoan" element={<ViewLoan/>}/>
       </Routes>
       </BrowserRouter>
     </div>
