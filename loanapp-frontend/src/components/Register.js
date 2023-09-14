@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
     const baseURL = "http://localhost:7000/saveUser";
+    const navigate = useNavigate();
     const [id, setId] = useState("")
     const [password, setPassword] = useState("")
     const [fullname, setFullname] = useState("")
@@ -60,7 +62,8 @@ const Register = () => {
           .then((response) => {
             // alert(response.data.fullname);
             alert("Employee "+ fullname +" added!");
-            //navigate("/account");
+            sessionStorage.setItem("emp_id", id);
+            navigate("/user/" + id );
           }).catch(error => {
             alert("error==="+error);
           });

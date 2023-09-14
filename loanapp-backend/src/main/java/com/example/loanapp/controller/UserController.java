@@ -29,15 +29,6 @@ class UserController {
 		String result = "";
 		result = userService.saveUser(u);
 		
-//		User obj = userService.saveUser(u);
-//		
-//		if(obj != null) {
-//			result = "User saved";
-//		}
-//		else {
-//			result = "Failed to insert data";
-//		}
-		
 		return result;
 	}
 	

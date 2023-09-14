@@ -1,9 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
 
     const baseURL = "http://localhost:7000/loginUser";
+    const navigate = useNavigate();
     const [id, setId] = useState("")
     const [password, setPassword] = useState("")
 
@@ -27,6 +29,7 @@ const Login = () => {
             if(response.data === "Login Success") {
                 alert("Employee "+ id +" logged in!");
                 sessionStorage.setItem("emp_id", id);
+                navigate("/user/" + id )
             }
             else {
                 alert('Invalid credentials')

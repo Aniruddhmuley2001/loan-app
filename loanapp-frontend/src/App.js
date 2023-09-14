@@ -6,6 +6,8 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ViewLoans from './components/ViewLoans';
 import ViewItems from './components/ViewItems';
+import UserDashboard from './components/UserDashboard';
+import ApplyLoan from './components/ApplyLoan';
 
 const App = () => {
   return (
@@ -17,8 +19,10 @@ const App = () => {
         <Route exact path="/login" element={<Login/>}/>
         <Route exact path="/register" element={<Register/>}/>
 
-        <Route path="/user/:id/viewLoan" element={<ViewLoans/>}/>
+        <Route path="/user/:id" element={<UserDashboard/>}/>
+        <Route path="/user/:id/viewLoans" element={<ViewLoans/>}/>
         <Route path="/user/:id/viewItems" element={<ViewItems/>}/>
+        <Route path="/user/:id/applyLoan" element={<ApplyLoan/>}/>
       </Routes>
       </BrowserRouter>
     </div>
