@@ -1,12 +1,16 @@
 package com.example.loanapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.loanapp.model.ApplyLoan;
 import com.example.loanapp.model.User;
 import com.example.loanapp.model.UserLogin;
 import com.example.loanapp.service.UserService;
@@ -38,5 +42,15 @@ class UserController {
 		result = userService.loginUser(u);
 		
 		return result;
+	}
+	
+	@GetMapping("/findAllCards/{emp_id}")
+	public List<User> findAllCards(@PathVariable("emp_id") String emp_id){
+		return userService.findAllCards(emp_id);
+	}
+	
+	@PostMapping("/applyLoan")
+	public String applyLoan(@RequestBody ApplyLoan applyLoan) {
+		return userService.applyLoan(applyLoan);
 	}
 }

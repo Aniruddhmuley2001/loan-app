@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 public class Item {
 	
 	@Id
-	@GeneratedValue
+//	@GeneratedValue
 	@Column(name="item_id")
 	private int itemId;
 	
