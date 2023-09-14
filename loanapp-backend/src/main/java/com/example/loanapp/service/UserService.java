@@ -1,13 +1,25 @@
 package com.example.loanapp.service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.loanapp.model.ApplyLoan;
+import com.example.loanapp.model.Item;
+import com.example.loanapp.model.Loan;
 import com.example.loanapp.model.User;
+import com.example.loanapp.model.UserCard;
+import com.example.loanapp.model.UserIssue;
 import com.example.loanapp.model.UserLogin;
-
+import com.example.loanapp.repository.ItemRepository;
+import com.example.loanapp.repository.LoanRepository;
+import com.example.loanapp.repository.UserCardRepository;
+import com.example.loanapp.repository.UserIssueRepository;
 import com.example.loanapp.repository.UserRepository;
 
 @Service
@@ -15,6 +27,14 @@ public class UserService {
 	
 	@Autowired
 	UserRepository userRepo;
+	@Autowired
+	LoanRepository loanRepo;
+	@Autowired
+	UserCardRepository userCardRepo;
+	@Autowired
+	ItemRepository itemRepo;
+	@Autowired
+	UserIssueRepository userIssueRepo;
 	
 	
 	
@@ -58,5 +78,54 @@ public class UserService {
 		}
 		
 		return result;
+	}
+	
+	public List<User> findAllCards(String emp_id){
+		return userRepo.findAllCards(emp_id);
+	}
+	
+	@Transactional
+	public String applyLoan(ApplyLoan applyLoan) {
+		String res="";
+		User user = null;
+		Optional<User> opt = userRepo.findById(applyLoan.getId());
+		if (opt.isPresent()) user = opt.get();
+		int lid = loanRepo.findByLoanType(applyLoan.getItemCategory());
+		Loan loan = loanRepo.findById(lid).get();
+		String cid = "C0001";
+		UserCard usercard = new UserCard();
+		usercard.setRow_id(cid);
+		usercard.setUser(user);
+		usercard.setLoan(loan);
+		usercard.setIssueDate(LocalDate.now());	
+		Optional<UserCard> optional = userCardRepo.findById(cid);
+		if(optional.isEmpty()) {
+			usercard=userCardRepo.save(usercard);
+			res = "User Card Details added Successfully\n";
+		}
+		else {
+			res="Card Already Exists";
+		}
+		
+		//inserting into issue table
+		int iid = 1;
+		UserIssue userIssue=new UserIssue();
+		LocalDate i_dt = LocalDate.now();
+		Item item = itemRepo.findByMakeCategory(applyLoan.getItemCategory(), applyLoan.getItemMake());
+		System.out.println("item id"+item.getItemId());
+		userIssue.setUser(user);
+		userIssue.setIssueDate(i_dt);
+		userIssue.setIssueId(iid);
+		userIssue.setItem(item);
+		
+		Optional<UserIssue> opt2 = userIssueRepo.findById(iid);
+		if(opt2.isEmpty()) {
+			userIssue = userIssueRepo.save(userIssue);
+			res = res + "User issue details added succesfully";
+			}
+		else {
+			res = res + "Card already exists";
+		}
+		return res;
 	}
 }
