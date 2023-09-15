@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -46,9 +47,11 @@ public class User {
 	private LocalDate doj;
 	
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JsonBackReference
 	private List<UserCard> userCard;
 	
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JsonBackReference
 	private Set<UserIssue> userIssue;
 	
 	public String getName() {

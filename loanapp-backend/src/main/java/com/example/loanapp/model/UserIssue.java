@@ -2,7 +2,9 @@ package com.example.loanapp.model;
 
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDate;
 
@@ -18,15 +20,18 @@ import javax.persistence.ManyToOne;
 public class UserIssue {
 	
 	@Id
-	@GeneratedValue
 	@Column(name="issue_id")
 	private int issueId;
 	
+	@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	
 	@ManyToOne
+	@JsonIgnore
+	@JsonBackReference
 	@JoinColumn(name="item_id")
 	private Item item;
 	

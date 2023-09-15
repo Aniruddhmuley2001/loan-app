@@ -4,18 +4,30 @@ import axios from "axios";
 
 
 const ApplyLoan = () => {
-    const baseURL = "http://localhost:7000/allItemCategories";
+    const itemCategoryURL = "http://localhost:7000/allItemCategories";
+    const itemMakeURL = "http://localhost:7000/allItemMakes";
+    const applyLoanURL = "http://localhost:7000/applyLoan";
+
+    const empId = sessionStorage.getItem("emp_id");
     
-    const [items, setItems] = useState([]);
-    const [itemsCategory, setItemCategory] = useState([]);
+    const [itemsCategory, setItemsCategory] = useState([]);
+    const [itemCategory, setItemCategory] = useState("");
     const [itemDescription, setItemDescription] = useState([]);
     const [itemValue, setItemValue] = useState([]);
-    const [itemMake, setItemMake] = useState([]);
+    const [itemsMake, setItemsMake] = useState([]);
+    const [itemMake, setItemMake] = useState("");
 
-    const setItemsData = () => {
-        axios.get(baseURL ).then((response) => {
-            setItems(response.data);
-            console.log(items)
+    const setItemCategoryData = () => {
+        axios.get(itemCategoryURL ).then((response) => {
+            setItemsCategory(response.data);
+        }).catch(error => {
+            alert("Error Ocurred while loading data:" + error);
+        });
+    }
+
+    const setItemMakeData = () => {
+        axios.get(itemMakeURL ).then((response) => {
+            setItemsMake(response.data);
         }).catch(error => {
             alert("Error Ocurred while loading data:" + error);
         });
@@ -23,7 +35,7 @@ const ApplyLoan = () => {
    
 
     const itemCategoryChangeHandler = (event) => {
-        setItems(event.target.value);
+        setItemCategory(event.target.value);
     }
 
     const itemDescriptionChangeHandler = (event) => {
@@ -36,32 +48,34 @@ const ApplyLoan = () => {
 
     const itemMakeChangeHandler = (event) => {
         setItemMake(event.target.value);
+        console.log(itemMake)
     }
 
 
 
-    // const submitActionHandler = (event) => {
-    //     event.preventDefault();
-    //     axios
-    //       .post(baseURL, {
-    //         itemCategory: itemCategory,
-    //         itemDescription: itemDescription,
-    //         itemValue: itemValue,
-    //         itemMake:itemMake
-           
-    //       })
-    //       .then((response) => {
-    //         // alert(response.data.fullname);
-    //         alert("Loan Applied successfully");
-    //         //navigate("/account");
-    //       }).catch(error => {
-    //         alert("error==="+error);
-    //       });
+    const submitActionHandler = (event) => {
+        event.preventDefault();
+        axios
+          .post(applyLoanURL, {
+            id: empId,
+            itemCategory: itemCategory,
+            itemDescription: itemDescription,
+            itemValue: itemValue,
+            itemMake:itemMake
+          })
+          .then((response) => {
+            // alert(response.data.fullname);
+            alert("Loan Applied successfully");
+            // navigate("/account");
+          }).catch(error => {
+            alert("error==="+error);
+          });
     
-    //   };
+      };
 
     useEffect(() => {
-        setItemsData();
+        setItemCategoryData();
+        setItemMakeData();
       }, []);
 
     return (
@@ -72,19 +86,18 @@ const ApplyLoan = () => {
         <div>
             <p>Select Product and Apply for Loan</p>
             </div>
-        <form >
+        <form onSubmit={submitActionHandler}>
 
             <p>
-            <label>Employee Id: <input type="text" value={sessionStorage.getItem("emp_id")} disabled></input></label>
+            <label>Employee Id: <input type="text" value={empId} disabled></input></label>
             </p>
 
             <p> 
                 <label>Item Category:  
                     <select >
                     {
-                    items.map((item, index) => (
-                    <option key={index} value={item} onChange={itemCategoryChangeHandler}>{item}</option> 
-                        ))
+                        itemsCategory.map((item, index) => (
+                        <option key={index} value={item} onChange={itemCategoryChangeHandler}>{item}</option> ))
                     }
                     </select>
               </label>
@@ -96,15 +109,20 @@ const ApplyLoan = () => {
                 </label>
             </p>
 
-            <p>
-                <label>
-                Item Make: <input type="text" value={itemMake} onChange={itemMakeChangeHandler}></input>
-                </label>
+            <p> 
+                <label>Item Make:  
+                    <select >
+                    {
+                        itemsMake.map((item, index) => (
+                        <option key={index} value={item} onChange={itemMakeChangeHandler}>{item}</option> ))
+                    }
+                    </select>
+              </label>
             </p>
 
             <p>
                 <label>
-                Item Value: <input type="number" value={itemValue} onChange={itemValueChangeHandler} disabled></input>
+                Item Value: <input type="number" value={itemValue} onChange={itemValueChangeHandler}></input>
                 </label>
             </p>
 

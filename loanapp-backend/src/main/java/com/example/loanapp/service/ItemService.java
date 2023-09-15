@@ -1,6 +1,7 @@
 package com.example.loanapp.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -49,5 +50,31 @@ public class ItemService {
 	public List<String> getItemBytype(){
 		List<String> loanType = itemRepo.findAll().stream().map(Item::getItemCategory).distinct().collect(Collectors.toList());
 		return loanType;
+	}
+	
+	public List<String> getDistinctMakesByCategory(String category) 
+	{
+		return itemRepo.getDistinctMakesByCategory(category);
+	}
+	
+	public List<String> getDistinctDescriptionByMakeAndCategory(String category, String make) 
+	{
+		return itemRepo.getDistinctDescriptionByMakeAndCategory(category, make);
+	}
+	
+	public Item getItemByMakeAndCategoryAndDescription(String category, String make, String description) 
+	{
+		return itemRepo.getItemByMakeAndCategoryAndDescription(category, make, description);
+	}
+	
+	public List<String> getItemByMake(){
+		List<String> itemMake = itemRepo.findAll().stream().map(Item::getItemMake).distinct().collect(Collectors.toList());
+		return itemMake;
+	}
+	
+	public List<Map<String,Object>> getAllItemsByEmpId(String emp_id)
+	{
+		List<Map<String,Object>> allItems=itemRepo.getAllItemsByEmpId(emp_id);
+		return allItems;
 	}
 }

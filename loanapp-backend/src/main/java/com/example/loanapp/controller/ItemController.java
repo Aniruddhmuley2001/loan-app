@@ -1,6 +1,7 @@
 package com.example.loanapp.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +15,7 @@ import com.example.loanapp.model.Item;
 import com.example.loanapp.service.ItemService;
 
 @RestController
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 class ItemController {
 	
 	@Autowired
@@ -45,6 +46,40 @@ class ItemController {
 	@GetMapping("/allItemCategories")
 	public List<String> getAllTypes() {
 		return itemService.getItemBytype();
+	}
+	
+	// Get List of Item Make as per Item Category selected
+	@GetMapping("/{category}/getAllMake") 
+	public List<String> getDistinctMakesByCategory(@PathVariable String category) 
+	{
+		return itemService.getDistinctMakesByCategory(category);
+	}
+	
+	// Get Item Descriptions as per Item Category and Item Make
+	@GetMapping("/{category}/{make}/getAllDescriptions")
+	public List<String> getDistinctDescriptionByMakeAndCategory(@PathVariable String category, @PathVariable String make)
+	{
+		return itemService.getDistinctDescriptionByMakeAndCategory(category, make);
+	}
+	
+	// Get Item by Category, Make and Description
+	@GetMapping("/{category}/{make}/{description}/getItem")
+	public Item getItemByMakeAndCategoryAndDescription(@PathVariable String category, @PathVariable String make, @PathVariable String description) 	
+	{
+		Item item = itemService.getItemByMakeAndCategoryAndDescription(category, make, description);
+		
+		return item;
+	}
+	
+	@GetMapping("/allItemMakes")
+	public List<String> getAllMakes() {
+		return itemService.getItemByMake();
+	}
+	
+	@GetMapping("/viewItems/{emp_id}")
+	public List<Map<String,Object>> getAllItemsByEmpId(@PathVariable String emp_id)
+	{
+		return itemService.getAllItemsByEmpId(emp_id);
 	}
 	
 }

@@ -3,6 +3,8 @@ package com.example.loanapp.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -92,7 +94,7 @@ public class UserService {
 		if (opt.isPresent()) user = opt.get();
 		int lid = loanRepo.findByLoanType(applyLoan.getItemCategory());
 		Loan loan = loanRepo.findById(lid).get();
-		String cid = "C0001";
+		String cid = UUID.randomUUID().toString().replace("-", "");
 		UserCard usercard = new UserCard();
 		usercard.setRow_id(cid);
 		usercard.setUser(user);
@@ -108,7 +110,8 @@ public class UserService {
 		}
 		
 		//inserting into issue table
-		int iid = 1;
+		Random r = new Random();
+		int iid = r.nextInt(100000-500+1)+500;
 		UserIssue userIssue=new UserIssue();
 		LocalDate i_dt = LocalDate.now();
 		Item item = itemRepo.findByMakeCategory(applyLoan.getItemCategory(), applyLoan.getItemMake());

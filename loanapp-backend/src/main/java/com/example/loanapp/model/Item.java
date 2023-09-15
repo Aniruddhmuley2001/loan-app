@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Item {
 	
@@ -35,6 +38,7 @@ public class Item {
 	private int itemValue;
 	
 	@OneToMany(mappedBy="item",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JsonBackReference
 	private List<UserIssue> userIssue;
 
 	public int getItemId() {
