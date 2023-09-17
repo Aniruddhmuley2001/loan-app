@@ -3,11 +3,22 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function ViewItems() {
-    const baseURL = "http://localhost:7000/allItems";
-    const [items, setItemDetails] = useState([]);
+    const empId = sessionStorage.getItem("emp_id"); 
+    const fetchUserDetailsBaseURL = `http://localhost:7000/fetchUserDetails/${empId}`;
+    const fetchItemsPurchasedBaseURL = `http://localhost:7000/fetchItemsById/${empId}`;
+    const [itemsWithIssueId, setItemDetails] = useState([]);
+    const [userDetails, setUserDetails] = useState([]);
   
+    const setUserData = () => {
+      axios.get(fetchUserDetailsBaseURL).then((response) => {
+        setUserDetails(response.data);
+      }).catch(error => {
+        alert("Error Occured while loaing User Data: " + error);
+      })
+    }
+
     const setItemData = () => {
-      axios.get(baseURL ).then((response) => {
+      axios.get(fetchItemsPurchasedBaseURL ).then((response) => {
         setItemDetails(response.data);
       }).catch(error => {
         alert("Error Ocurred while loading data:" + error);
@@ -15,25 +26,31 @@ export default function ViewItems() {
     }
   
     useEffect(() => {
+      setUserData();
       setItemData();
     }, []);
   
     return (
-      <div class="card-body">
-        <br>
-        </br>
+      <div className="card-body">
+        <br></br>
   
+        <div>
+          <p>Employee ID: {userDetails.id}</p>
+          <p>Designation: {userDetails.designation}</p>
+          <p>Department: {userDetails.department}</p>
+        </div>
   
         <br></br>
         <div className="col-md-6">
-          <h4>Items List</h4>
+          <h4>Items Purchased</h4>
   
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <table class="table table-bordered table-striped">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <table className="table table-bordered table-striped">
                   <thead>
                     <tr>
+                      <th>Issue ID</th>
                       <th>Item ID</th>
                       <th>Item Description</th>
                       <th>Item Value</th>
@@ -46,14 +63,14 @@ export default function ViewItems() {
   
                     {
                       
-                      items.map((item, index) => (
+                      itemsWithIssueId.map((itemWithIssueId, index) => (
   
                         <tr>
-                          <th scope="row">{item.itemId}</th>
-  
-                          <td>{item.itemDescription}</td>
-                          <td>{item.itemValue}</td>
-                          <td>{item.itemMake}</td>
+                          <td scope="row">{itemWithIssueId.issueId}</td>
+                          <td>{itemWithIssueId.item.itemId}</td>
+                          <td>{itemWithIssueId.item.itemDescription}</td>
+                          <td>{itemWithIssueId.item.itemValue}</td>
+                          <td>{itemWithIssueId.item.itemMake}</td>
   
   
                           {/* <td >

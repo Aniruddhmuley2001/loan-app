@@ -38,7 +38,10 @@ public class UserService {
 	@Autowired
 	UserIssueRepository userIssueRepo;
 	
-	
+	public Optional<User> fetchUser(String empId) {
+		Optional<User> user = userRepo.findById(empId);
+		return user;
+	}
 	
 	public String saveUser(User u) {
 		String result="";

@@ -1,5 +1,8 @@
 import React from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import ViewLoans from './ViewLoans';
+import ViewItems from './ViewItems';
+import ApplyLoan from './ApplyLoan';
 
 export default function UserDashboard() {
     const empId = sessionStorage.getItem("emp_id")
@@ -18,21 +21,21 @@ export default function UserDashboard() {
             </div> */}
                 
             <div className="container-fluid">
-                <a className="navbar-brand" href={`./${empId}/viewLoans`}>View Loan</a>
+                <a className="navbar-brand" href={`/user/${empId}/viewLoans`}>View Loan</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 {/* <span className="navbar-toggler-icon"></span> */}
                 </button>
             </div>
 
             <div className="container-fluid">
-                <a className="navbar-brand" href={`./${empId}/viewItems`}>Items Purchased</a>
+                <a className="navbar-brand" href={`/user/${empId}/viewItems`}>Items Purchased</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 {/* <span className="navbar-toggler-icon"></span> */}
                 </button>
             </div>
 
             <div className="container-fluid">
-                <a className="navbar-brand" href={`./${empId}/applyLoan`}>Apply Loan</a>
+                <a className="navbar-brand" href={`/user/${empId}/applyLoan`}>Apply Loan</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 {/* <span className="navbar-toggler-icon"></span> */}
                 </button>
@@ -46,6 +49,8 @@ export default function UserDashboard() {
             </div>
 
         </nav>
+
+        <Outlet/>
     </div>
   )
 }

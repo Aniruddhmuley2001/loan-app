@@ -77,7 +77,7 @@ class ItemController {
 	}
 	
 	@GetMapping("/viewItems/{emp_id}")
-	public List<Map<String,Object>> getAllItemsByEmpId(@PathVariable String emp_id)
+	public List<Map<String,Object>> getAllItemsByEmpId(@PathVariable("emp_id") String emp_id)
 	{
 		return itemService.getAllItemsByEmpId(emp_id);
 	}

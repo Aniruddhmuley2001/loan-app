@@ -1,6 +1,7 @@
 package com.example.loanapp.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,6 +27,11 @@ class UserController {
 	@GetMapping("/showMessage")
 	public String showMessage() {
 		return "Welcome!";
+	}
+	
+	@GetMapping("/fetchUserDetails/{emp_id}")
+	public Optional<User> fetchUserDetails(@PathVariable("emp_id") String emp_id) {
+		return userService.fetchUser(emp_id);
 	}
 	
 	@PostMapping("/saveUser")

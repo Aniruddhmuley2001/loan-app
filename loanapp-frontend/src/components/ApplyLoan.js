@@ -81,9 +81,6 @@ const ApplyLoan = () => {
     return (
         <>
         <div>
-            <h2>Loan Management Application</h2>
-        </div>
-        <div>
             <p>Select Product and Apply for Loan</p>
             </div>
         <form onSubmit={submitActionHandler}>
