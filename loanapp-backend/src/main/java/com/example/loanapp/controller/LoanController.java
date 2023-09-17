@@ -1,6 +1,8 @@
 package com.example.loanapp.controller;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -45,6 +47,12 @@ public class LoanController {
 	public Loan getLoanById(@PathVariable("loanno")  int lno)
 	{
 		return loanService.getLoanById(lno);
+	}
+
+	@GetMapping("/viewLoans/{emp_id}")
+	public List<Map<LocalDate,Object>> getAllItemsByEmpId(@PathVariable("emp_id") String emp_id)
+	{
+		return loanService.getLoansByEmpId(emp_id);
 	}
 	
 }

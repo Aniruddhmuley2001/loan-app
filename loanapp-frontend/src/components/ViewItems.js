@@ -55,6 +55,7 @@ export default function ViewItems() {
                       <th>Item Description</th>
                       <th>Item Value</th>
                       <th>Item Make</th>
+                      <th>Item Category</th>
                       {/* <th scope="col">Action</th> */}
   
                     </tr>
@@ -68,6 +69,7 @@ export default function ViewItems() {
                         <tr>
                           <td scope="row">{itemWithIssueId.issueId}</td>
                           <td>{itemWithIssueId.item.itemId}</td>
+                          <td>{itemWithIssueId.item.itemCategory}</td>
                           <td>{itemWithIssueId.item.itemDescription}</td>
                           <td>{itemWithIssueId.item.itemValue}</td>
                           <td>{itemWithIssueId.item.itemMake}</td>
