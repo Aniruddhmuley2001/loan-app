@@ -1,9 +1,14 @@
 package com.example.loanapp.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.example.loanapp.model.UserCard;
+import com.example.loanapp.model.ViewLoans;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +52,11 @@ public class LoanService {
 	
 	public Loan getLoanById(int lNo){
 		return loanRepo.findById(lNo).get();
+	}
+
+	public List<Map<LocalDate,Object>> getLoansByEmpId(String empId)
+	{
+		List<Map<LocalDate,Object>> allLoans =loanRepo.getLoansByEmpId(empId);
+		return allLoans;
 	}
 }
