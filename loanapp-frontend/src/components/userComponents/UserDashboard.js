@@ -1,8 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-import ViewLoans from './ViewLoans';
-import ViewItems from './ViewItems';
-import ApplyLoan from './ApplyLoan';
+import { Outlet } from 'react-router-dom';
 
 export default function UserDashboard() {
     const empId = sessionStorage.getItem("emp_id")

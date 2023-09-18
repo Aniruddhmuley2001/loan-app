@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="user_info")
@@ -46,12 +47,12 @@ public class User {
 	@Column(nullable=false)
 	private LocalDate doj;
 	
+//	@JsonBackReference
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JsonBackReference
 	private List<UserCard> userCard;
 	
+//	@JsonBackReference
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JsonBackReference
 	private Set<UserIssue> userIssue;
 	
 	public String getName() {
@@ -75,6 +76,7 @@ public class User {
 	public Set<UserIssue> getUserIssue() {
 		return userIssue;
 	}
+	
 	public void setUserIssue(Set<UserIssue> userIssue) {
 		this.userIssue = userIssue;
 	}

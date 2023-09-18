@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-const Login = () => {
+const UserLogin = () => {
 
     const baseURL = "http://localhost:7000/loginUser";
     const navigate = useNavigate();
@@ -59,4 +59,4 @@ const Login = () => {
 
 
 
-export default Login;
+export default UserLogin;

@@ -29,6 +29,11 @@ class UserController {
 		return "Welcome!";
 	}
 	
+	@GetMapping("/fetchUsers")
+	public List<User> fetchUserDetails() {
+		return userService.fetchUsers();
+	}
+	
 	@GetMapping("/fetchUserDetails/{emp_id}")
 	public Optional<User> fetchUserDetails(@PathVariable("emp_id") String emp_id) {
 		return userService.fetchUser(emp_id);

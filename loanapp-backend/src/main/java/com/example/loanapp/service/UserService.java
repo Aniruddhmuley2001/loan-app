@@ -43,6 +43,10 @@ public class UserService {
 		return user;
 	}
 	
+	public List<User> fetchUsers() {
+		return userRepo.fetchAllUsers();
+	}
+	
 	public String saveUser(User u) {
 		String result="";
 		

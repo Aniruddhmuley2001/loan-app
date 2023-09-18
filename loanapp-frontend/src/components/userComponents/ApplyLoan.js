@@ -48,7 +48,6 @@ const ApplyLoan = () => {
 
     const itemMakeChangeHandler = (event) => {
         setItemMake(event.target.value);
-        console.log(itemMake)
     }
 
 
