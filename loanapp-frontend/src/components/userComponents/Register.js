@@ -1,3 +1,4 @@
+import React from "react"
 import { useState } from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
@@ -72,41 +73,71 @@ const Register = () => {
 
     return (
         <>
-        <form onSubmit={submitActionHandler}>
-            <p>
-            <label>Employee Id: <input type="text" value={id} onChange={idChangeHandler}></input></label>
-            </p>
+        <div>
+            <main className="form-signin w-100 m-auto">
+            <form onSubmit={submitActionHandler}>
+            <img className="mb-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNv48GNbEnRiypNThhhx-LetVL89Vqe-I4xH9sE8VA9g&s" alt="" width="200" height="100"/>
+        <h3 className="mb-3" style={{color:"black"}}><b>Sign Up</b></h3>
+        <div className="form-floating mb-3">
+    
+      <input type="text" value={id} onChange={idChangeHandler} class="form-control" id="floatingInput"  fdprocessedid="q5g98"></input>
 
-            <p>
-            <label>Password: <input type="password" value={password} onChange={passwordChangeHandler}></input></label>
-            </p>
+      <label for="floatingInput">Employee ID </label>
+    </div>
+    <div className="form-floating mb-3">
+    
+    <input type="text" value={password} onChange={passwordChangeHandler} class="form-control" id="floatingInput"  fdprocessedid="q5g98"></input>
 
-            <p>
-            <label>Full Name: <input type="text" value={fullname} onChange={fullnameChangeHandler}></input></label>
-            </p>
+    <label for="floatingInput">Password </label>
+  </div>
+  <div className="form-floating mb-3">
+    
+      <input type="text" value={fullname} onChange={fullnameChangeHandler} class="form-control" id="floatingInput"  fdprocessedid="q5g98"></input>
 
-            <p>
-            <label>Designation: <input type="text" value={designation} onChange={designationChangeHandler}></input></label>
-            </p>
+      <label for="floatingInput">Full Name </label>
+    </div>
+    <div className="form-floating mb-3">
+    
+      <input type="text" value={designation} onChange={designationChangeHandler} class="form-control" id="floatingInput"  fdprocessedid="q5g98"></input>
 
-            <p>
-            <label>Department <input type="text" value={department} onChange={deptChangeHandler}></input></label>
-            </p>
+      <label for="floatingInput">Designation </label>
+    </div>
+    <div className="form-floating mb-3">
+    
+      <input type="text" value={department} onChange={deptChangeHandler} class="form-control" id="floatingInput"  fdprocessedid="q5g98"></input>
 
-            <p>
-            <label>Date of Birth: <input type="date" value={dob} onChange={dobChangeHandler}></input></label>
-            </p>
+      <label for="floatingInput">Department </label>
+    </div>
+    <div className="form-floating mb-3">
+    
+      <input type="date" value={dob} onChange={dobChangeHandler} class="form-control" id="floatingInput"  fdprocessedid="q5g98"></input>
 
-            <p>
-            <label>Date of Joining: <input type="date" value={doj} onChange={dojChangeHandler}></input></label>
-            </p>
+      <label for="floatingInput">Date of Birth </label>
+    </div>
+    <div className="form-floating mb-3">
+    
+      <input type="date" value={doj} onChange={dojChangeHandler} class="form-control" id="floatingInput"  fdprocessedid="q5g98"></input>
 
-            <p>
-            <label>Gender <input type="text" value={gender} onChange={genderChangeHandler}></input></label>
-            </p>
+      <label for="floatingInput">Date of Joining </label>
+    </div>
+    <div className="form-floating mb-3">
+    
+      <input type="text" value={gender} onChange={genderChangeHandler} class="form-control" id="floatingInput"  fdprocessedid="q5g98"></input>
 
-            <button type="submit">Register</button>
-        </form>
+      <label for="floatingInput">Gender </label>
+    </div>
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">
+            Register
+          </button>
+        </div>
+        <p className="forgot-password text-right">
+          Already registered <a href="/user/login" style={{color:"black"}}><b>Login</b></a>
+        </p>
+      </form>
+            </main>
+        </div>
+        
         </>
     )
 };
