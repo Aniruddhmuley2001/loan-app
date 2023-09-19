@@ -66,13 +66,13 @@ export default function ViewItems() {
                       
                       itemsWithIssueId.map((itemWithIssueId, index) => (
   
-                        <tr>
+                        <tr key={index}>
                           <td scope="row">{itemWithIssueId.issueId}</td>
                           <td>{itemWithIssueId.item.itemId}</td>
-                          <td>{itemWithIssueId.item.itemCategory}</td>
                           <td>{itemWithIssueId.item.itemDescription}</td>
                           <td>{itemWithIssueId.item.itemValue}</td>
                           <td>{itemWithIssueId.item.itemMake}</td>
+                          <td>{itemWithIssueId.item.itemCategory}</td>
   
   
                           {/* <td >

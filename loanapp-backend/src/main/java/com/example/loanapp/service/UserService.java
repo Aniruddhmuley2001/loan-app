@@ -85,8 +85,8 @@ public class UserService {
 		return result;
 	}
 	
-	public List<User> findAllCards(String emp_id){
-		return userRepo.findAllCards(emp_id);
+	public List<User> findUserDetailsById(String emp_id){
+		return userRepo.findUserDetailsById(emp_id);
 	}
 	
 	@Transactional
@@ -95,6 +95,8 @@ public class UserService {
 		User user = null;
 		Optional<User> opt = userRepo.findById(applyLoan.getId());
 		if (opt.isPresent()) user = opt.get();
+
+		// Inserting into UserCard Table
 		int lid = loanRepo.findByLoanType(applyLoan.getItemCategory());
 		Loan loan = loanRepo.findById(lid).get();
 		String cid = UUID.randomUUID().toString().replace("-", "");

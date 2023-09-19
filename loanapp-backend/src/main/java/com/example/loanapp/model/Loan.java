@@ -27,7 +27,7 @@ public class Loan {
 	private int loanDuration;
 	
 	@OneToMany(mappedBy="loan",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-//	@JsonBackReference
+	@JsonBackReference
 	private List<UserCard> userCard;
 	
 	public List<UserCard> getUserCard() {

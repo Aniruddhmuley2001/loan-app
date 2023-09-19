@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="user_info")
@@ -47,11 +48,13 @@ public class User {
 	private LocalDate doj;
 	
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JsonBackReference
+	@JsonIgnore
+//	@JsonBackReference
 	private List<UserCard> userCard;
 	
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JsonBackReference
+//	@JsonBackReference
+	@JsonIgnore
 	private Set<UserIssue> userIssue;
 	
 	public String getName() {
