@@ -11,10 +11,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
@@ -25,7 +23,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -44,7 +41,7 @@ import com.example.loanapp.service.UserService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
-public class userControllerTest  {
+class UserControllerTest {
 	
 	@Autowired
 	private MockMvc mvc; 
@@ -148,10 +145,10 @@ public class userControllerTest  {
 		
 		Mockito.when(userService.findAllCards("1")).
 		thenReturn(allUser);
-		mvc.perform(get("/getAllCards/1").
+		mvc.perform(get("/findAllCards/{id}",1).
 				contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(jsonPath("$", Matchers.hasSize(1)))
-				.andExpect(jsonPath("$[0].Name", Matchers.equalTo(user.getName())));
+				.andExpect(jsonPath("$[0].name", Matchers.equalTo(user.getName())));
 
 	}
 	

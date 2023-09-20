@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d5cd2c8-7d3e-4e01-a459-9fe9de39e59e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/controller/LoanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/Loan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/UserCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/UserCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/repository/LoanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/repository/LoanRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/repository/UserCardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/repository/UserCardRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/service/LoanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/com.example/loanapp/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/com.example/loanapp/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/LoanappApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/LoanappApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/Loan.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/Loan.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/loanapp/userControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/loanapp/UserControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/UserCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/UserCard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/service/UserService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,15 +47,16 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Administrator/Desktop/loanapp-repo/loanapp-backend",
-    "project.structure.last.edited": "Modules",
+    "git-widget-placeholder": "junit-test",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Administrator/Desktop/project/loanapp-repo/loanapp-backend",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.UserControllerTest">
     <configuration name="Start" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.example.loanapp.LoanappApplication" />
       <module name="loanapp" />
@@ -75,6 +64,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LoanappApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="loanapp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.loanapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.loanapp" />
+      <option name="MAIN_CLASS_NAME" value="com.example.loanapp.LoanappApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="loanapp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.loanapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.loanapp" />
+      <option name="MAIN_CLASS_NAME" value="com.example.loanapp.UserControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserControllerTest" />
+        <item itemvalue="JUnit.LoanappApplicationTests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
