@@ -1,20 +1,40 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 
-export default function UserForm(props) {
-    const baseURL = props.url;
+export default function EditUserData() {
+    let {userId} = useParams();
+    const getUserBaseURL = "http://localhost:7000/fetchUserDetails/" + userId;
+    const updateUserBaseURL = "http://localhost:7000/updateUser";
+
     const navigate = useNavigate();
     const adminId = sessionStorage.getItem("emp_id");
+
     const [id, setId] = useState("")
     const [password, setPassword] = useState("")
-    const [name, setname] = useState("")
+    const [name, setName] = useState("")
     const [designation, setDesignation] = useState("")
     const [department, setDepartment] = useState("")
     const [dob, setDob] = useState("")
     const [doj, setDoj] = useState("")
     const [gender, setGender] = useState("");
+
+    const setUserData = () => {
+        axios.get(getUserBaseURL ).then((response) => {
+            let user = response.data;
+            setId(user.id);
+            setPassword(user.password);
+            setName(user.name);
+            setDesignation(user.designation);
+            setDepartment(user.department);
+            setDob(user.dob);
+            setDoj(user.doj);
+            setGender(user.gender);
+        }).catch(error => {
+            alert("Error Ocurred while loading user data:" + error);
+        });
+    }
 
     const idChangeHandler = (event) => {
         setId(event.target.value);
@@ -25,7 +45,7 @@ export default function UserForm(props) {
     }
 
     const nameChangeHandler = (event) => {
-        setname(event.target.value);
+        setName(event.target.value);
     }
 
     const designationChangeHandler = (event) => {
@@ -48,10 +68,14 @@ export default function UserForm(props) {
         setGender(event.target.value);
     }
 
+    useEffect(() => {
+        setUserData();
+      }, []);
+
     const submitActionHandler = (event) => {
         event.preventDefault();
         axios
-          .post(baseURL, {
+          .put(updateUserBaseURL, {
             id: id,
             password: password,
             name: name,
@@ -75,7 +99,7 @@ export default function UserForm(props) {
         <>
         <form onSubmit={submitActionHandler}>
             <p>
-            <label>Employee Id: <input type="text" value={id} onChange={idChangeHandler}></input></label>
+            <label>Employee Id: <input type="text" value={id} disabled></input></label>
             </p>
 
             <p>

@@ -67,6 +67,50 @@ public class UserService {
 		return result;
 	}
 	
+	public String updateUser(User user) {
+		String result="";
+		User obj = null;
+		Optional<User> optional = userRepo.findById(user.getId());
+		
+		if(optional.isPresent()) {
+			User u = optional.get();
+			u.setId(user.getId());
+			u.setName(user.getName());
+			u.setDepartment(user.getDepartment());
+			u.setDesignation(user.getDesignation());
+			u.setGender(user.getGender());
+			u.setDoj(user.getDoj());
+			u.setDob(user.getDob());
+			
+			obj = userRepo.save(u);
+			if(obj!=null)
+				result="User updated successfully!";
+			else
+				result="User not updated!";
+		}
+		else {
+			result = "User Not found!";
+		}
+		
+		return result;
+	}
+	
+	public String deleteUser(String id) {
+		String result="";
+		User obj = null;
+		Optional<User> optional = userRepo.findById(id);
+		
+		if(optional.isPresent()) {
+			userRepo.deleteById(id);
+			result="User deleted successfully!";
+		}
+		else {
+			result = "User Not found!";
+		}
+		
+		return result;
+	}
+	
 	public String loginUser(UserLogin u) {
 		String result="";
 		User user = null;

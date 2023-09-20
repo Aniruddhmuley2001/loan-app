@@ -5,6 +5,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 export default function UsersList() {
     const navigate = useNavigate();
     const userDataBaseURL = "http://localhost:7000/fetchUsers";
+    const deleteUserDataBaseURL = "http://localhost:7000/deleteUser/";
     const [users, setUserDetails] = useState([]);
     
     const setUsersData = () => {
@@ -13,6 +14,15 @@ export default function UsersList() {
         }).catch(error => {
           alert("Error Occured while loaing User Data: " + error);
         })
+    }
+
+    const deleteEntry = (id) => {
+      axios.delete(deleteUserDataBaseURL+id).then((response) => {
+        alert("User deleted!");
+        navigate("./delete")
+      }).catch(error => {
+        alert("Error Occured while deleting User: " + error);
+      })
     }
 
     useEffect(() => {
@@ -62,7 +72,10 @@ export default function UsersList() {
                           <td>{user.doj}</td>
   
   
-                          <td > <Link to={"/edit/" + user.id}>Edit</Link>, <Link to={"/"}>Delete</Link> </td>
+                          <td > 
+                            <Link to={"./" + user.id}>Edit</Link>, 
+                            {<Link onClick={() => deleteEntry(user.id)}>Delete</Link>  }
+                          </td>
                           
                         </tr>
   

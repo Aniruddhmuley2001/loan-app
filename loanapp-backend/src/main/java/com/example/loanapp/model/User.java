@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -48,10 +51,12 @@ public class User {
 	private LocalDate doj;
 	
 //	@JsonBackReference
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private List<UserCard> userCard;
 	
 //	@JsonBackReference
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<UserIssue> userIssue;
 	
