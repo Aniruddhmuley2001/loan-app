@@ -3,6 +3,7 @@ package com.example.loanapp.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.loanapp.model.UserCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -73,9 +74,9 @@ class UserController {
 		return result;
 	}
 	
-	@GetMapping("/findAllCards/{emp_id}")
-	public List<User> findAllCards(@PathVariable("emp_id") String emp_id){
-		return userService.findAllCards(emp_id);
+	@GetMapping("/findUserDetailsById/{emp_id}")
+	public List<User> findUserDetailsById(@PathVariable("emp_id") String emp_id){
+		return userService.findUserDetailsById(emp_id);
 	}
 	
 	@PostMapping("/applyLoan")

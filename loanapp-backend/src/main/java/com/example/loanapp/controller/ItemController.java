@@ -18,7 +18,7 @@ import com.example.loanapp.model.Loan;
 import com.example.loanapp.service.ItemService;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:3000")
 class ItemController {
 	
 	@Autowired

@@ -53,11 +53,13 @@ public class User {
 //	@JsonBackReference
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JsonIgnore
 	private List<UserCard> userCard;
 	
 //	@JsonBackReference
 	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="user",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JsonIgnore
 	private Set<UserIssue> userIssue;
 	
 	public String getName() {

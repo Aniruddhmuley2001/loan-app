@@ -29,9 +29,10 @@ public class Loan {
 	@Column(name="loan_duration", nullable=false)
 	private int loanDuration;
 	
-//	@JsonBackReference
+	@JsonBackReference
 //	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="loan",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+
 	private List<UserCard> userCard;
 	
 	public List<UserCard> getUserCard() {
