@@ -6,13 +6,16 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.loanapp.model.Loan;
+import com.example.loanapp.model.User;
 import com.example.loanapp.service.LoanService;
 
 @RestController
@@ -33,7 +36,7 @@ public class LoanController {
 		
 	}
 	
-	@GetMapping("/getAllLoans")
+	@GetMapping("/fetchLoans")
 	public List<Loan> getAllLoans() {
 		return loanService.getAllLoans();
 	}
@@ -43,7 +46,23 @@ public class LoanController {
 		return loanService.getLoanBytype();
 	}
 	
-	@GetMapping("/loanById/{loanno}")
+	@PutMapping("/updateLoan")
+	public String updateLoan(@RequestBody Loan l) {
+		String result = "";
+		result = loanService.updateLoan(l);
+		
+		return result;
+	}
+	
+	@DeleteMapping("/deleteLoan/{loan_id}")
+	public String deleteLoan(@PathVariable("loan_id") int loan_id) {
+		String result = "";
+		result = loanService.deleteLoan(loan_id);
+		
+		return result;
+	}
+	
+	@GetMapping("/fetchLoanDetails/{loanno}")
 	public Loan getLoanById(@PathVariable("loanno")  int lno)
 	{
 		return loanService.getLoanById(lno);

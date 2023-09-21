@@ -2,7 +2,17 @@ package com.example.loanapp.model;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -30,8 +40,9 @@ public class Item {
 	@Column(name="item_value", nullable=false)
 	private int itemValue;
 	
-	@OneToMany(mappedBy="item",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JsonBackReference
+	@OneToMany(mappedBy="item",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@OnDelete(action=OnDeleteAction.CASCADE)
 	private List<UserIssue> userIssue;
 
 	public int getItemId() {

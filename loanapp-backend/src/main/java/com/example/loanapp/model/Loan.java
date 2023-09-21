@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,8 +29,10 @@ public class Loan {
 	@Column(name="loan_duration", nullable=false)
 	private int loanDuration;
 	
-	@OneToMany(mappedBy="loan",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JsonBackReference
+//	@OnDelete(action=OnDeleteAction.CASCADE)
+	@OneToMany(mappedBy="loan",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+
 	private List<UserCard> userCard;
 	
 	public List<UserCard> getUserCard() {
