@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-const Login = () => {
+const UserLogin = () => {
 
   const baseURL = "http://localhost:7000/loginUser";
   const navigate = useNavigate();
@@ -70,4 +70,4 @@ const Login = () => {
 
 
 
-export default Login;
+export default UserLogin;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.loanapp.model.Item;
 import com.example.loanapp.model.Loan;
+import com.example.loanapp.model.User;
 import com.example.loanapp.repository.ItemRepository;
 
 @Service
@@ -34,6 +35,49 @@ public class ItemService {
 				result = "Item saved successfuly.";
 			else
 				result = "Registration failed!";
+		}
+		
+		return result;
+	}
+	
+	public String updateItem(Item item) {
+		String result="";
+		Item obj = null;
+		Optional<Item> optional = itemRepo.findById(item.getItemId());
+		
+		if(optional.isPresent()) {
+			Item i = optional.get();
+			i.setItemId(item.getItemId());
+			i.setIssueStatus(item.isIssueStatus());
+			i.setItemDescription(item.getItemDescription());
+			i.setItemCategory(item.getItemCategory());
+			i.setItemMake(item.getItemMake());
+			i.setItemValue(item.getItemValue());
+			
+			obj = itemRepo.save(i);
+			if(obj!=null)
+				result="Item updated successfully!";
+			else
+				result="Item not updated!";
+		}
+		else {
+			result = "Item Not found!";
+		}
+		
+		return result;
+	}
+	
+	public String deleteItem(int id) {
+		String result="";
+		User obj = null;
+		Optional<Item> optional = itemRepo.findById(id);
+		
+		if(optional.isPresent()) {
+			itemRepo.deleteById(id);
+			result="Item deleted successfully!";
+		}
+		else {
+			result = "Item Not found!";
 		}
 		
 		return result;

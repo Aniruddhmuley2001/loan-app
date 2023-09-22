@@ -6,9 +6,11 @@ import java.util.Optional;
 import com.example.loanapp.model.UserCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +32,11 @@ class UserController {
 		return "Welcome!";
 	}
 	
+	@GetMapping("/fetchUsers")
+	public List<User> fetchUserDetails() {
+		return userService.fetchUsers();
+	}
+	
 	@GetMapping("/fetchUserDetails/{emp_id}")
 	public Optional<User> fetchUserDetails(@PathVariable("emp_id") String emp_id) {
 		return userService.fetchUser(emp_id);
@@ -39,6 +46,22 @@ class UserController {
 	public String saveUser(@RequestBody User u) {
 		String result = "";
 		result = userService.saveUser(u);
+		
+		return result;
+	}
+	
+	@PutMapping("/updateUser")
+	public String updateUser(@RequestBody User u) {
+		String result = "";
+		result = userService.updateUser(u);
+		
+		return result;
+	}
+	
+	@DeleteMapping("/deleteUser/{emp_id}")
+	public String deleteUser(@PathVariable("emp_id") String emp_id) {
+		String result = "";
+		result = userService.deleteUser(emp_id);
 		
 		return result;
 	}
