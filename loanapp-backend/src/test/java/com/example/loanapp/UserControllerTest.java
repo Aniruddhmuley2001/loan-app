@@ -28,11 +28,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.example.loanapp.model.User;
+import com.example.loanapp.repository.AdminRepository;
 import com.example.loanapp.repository.ItemRepository;
 import com.example.loanapp.repository.LoanRepository;
 import com.example.loanapp.repository.UserCardRepository;
 import com.example.loanapp.repository.UserIssueRepository;
 import com.example.loanapp.repository.UserRepository;
+import com.example.loanapp.service.AdminService;
 import com.example.loanapp.service.IssueService;
 import com.example.loanapp.service.ItemService;
 import com.example.loanapp.service.LoanService;
@@ -62,6 +64,9 @@ class UserControllerTest {
 	private LoanService loanService;
 	
 	@MockBean
+	private AdminService adminService;
+	
+	@MockBean
 	private UserRepository userRepository;
 	
 	@MockBean
@@ -75,6 +80,9 @@ class UserControllerTest {
 	
 	@MockBean
 	private UserIssueRepository userIssueRepository;
+	
+	@MockBean
+	private AdminRepository adminRepository;
 	
 //	private static ObjectMapper mapper = new ObjectMapper();
 	
@@ -143,9 +151,9 @@ class UserControllerTest {
 		List<User> allUser = new ArrayList<>();
 		allUser.add(user);
 		
-		Mockito.when(userService.findAllCards("1")).
+		Mockito.when(userService.findUserDetailsById("1")).
 		thenReturn(allUser);
-		mvc.perform(get("/findAllCards/{id}",1).
+		mvc.perform(get("/findUserDetailsById/{id}",1).
 				contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(jsonPath("$", Matchers.hasSize(1)))
 				.andExpect(jsonPath("$[0].name", Matchers.equalTo(user.getName())));
