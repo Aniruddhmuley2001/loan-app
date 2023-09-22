@@ -6,24 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9d5cd2c8-7d3e-4e01-a459-9fe9de39e59e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/LoanappApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/LoanappApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/controller/ItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/controller/ItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/Loan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/UserCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/model/UserCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/repository/ItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/repository/ItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/loanapp/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/loanapp/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/LoanappApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/LoanappApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/Loan.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/Loan.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/UserCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/model/UserCard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/repository/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/repository/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/loanapp/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/loanapp/service/UserService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

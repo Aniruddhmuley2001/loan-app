@@ -69,12 +69,9 @@ const ApplyLoan = () => {
 
             );
 
-            //const json1=response.text();
-            //const json2=json1 ? JSON.parse(json1) : {};
-            //const json=JSON.parse(json1);
-            const json = await response.json();
-            console.log(json)
-            setValue(json.itemValue);
+            const parsedJson = await response.json();
+            console.log(parsedJson);
+            setValue(parsedJson.itemValue);
         };
         if (category && itemMake && itemDescription)
             data();
@@ -120,6 +117,7 @@ const ApplyLoan = () => {
                 }
             );
             const json = await response.json();
+            console.log(response);
             if (response.status === 200) {
                 alert("Loan applied Successfuly.")
             } else {

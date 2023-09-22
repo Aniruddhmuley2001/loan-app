@@ -4,9 +4,6 @@ const Home = () => {
     const navigate = useNavigate();
     return (
         <>
-        <div>
-            <h2>This is Home Page</h2>
-        </div>
         
         <div>
             <p>Already a user?</p>
