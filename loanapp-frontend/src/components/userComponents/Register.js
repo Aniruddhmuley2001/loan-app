@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
 const Register = () => {
     const baseURL = "http://localhost:7000/saveUser";
@@ -72,41 +75,50 @@ const Register = () => {
 
     return (
         <>
-        <form onSubmit={submitActionHandler}>
-            <p>
-            <label>Employee Id: <input type="text" value={id} onChange={idChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Password: <input type="password" value={password} onChange={passwordChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Full Name: <input type="text" value={fullname} onChange={fullnameChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Designation: <input type="text" value={designation} onChange={designationChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Department <input type="text" value={department} onChange={deptChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Date of Birth: <input type="date" value={dob} onChange={dobChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Date of Joining: <input type="date" value={doj} onChange={dojChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Gender <input type="text" value={gender} onChange={genderChangeHandler}></input></label>
-            </p>
-
-            <button type="submit">Register</button>
-        </form>
+        <div className="modal show" style={{ display: 'block', position: 'initial' }}>
+          <Modal.Dialog>
+            <Modal.Header>
+              <Modal.Title>Register for loans</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <Form onSubmit={submitActionHandler}>
+              <Form.Group className="mb-3" controlId="formBasicID">
+                <Form.Label>Employee ID</Form.Label>
+                <Form.Control type="text" placeholder="Enter ID" value={id} onChange={idChangeHandler} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" value={password} onChange={passwordChangeHandler}/>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control type="test" placeholder="Name" value={fullname} onChange={fullnameChangeHandler}/>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicDesig">
+                <Form.Label>Designation</Form.Label>
+                <Form.Control type="test" placeholder="Designation" value={designation} onChange={designationChangeHandler}/>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicDept">
+                <Form.Label>Department</Form.Label>
+                <Form.Control type="test" placeholder="Depatment" value={department} onChange={deptChangeHandler}/>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicDob">
+                <Form.Label>Date of Birth</Form.Label>
+                <Form.Control type="date" value={dob} onChange={dobChangeHandler}/>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicDoj">
+                <Form.Label>Date of Joining</Form.Label>
+                <Form.Control type="date" value={doj} onChange={dojChangeHandler}/>
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicGender">
+                <Form.Label>Gender</Form.Label>
+                <Form.Control type="test" placeholder="Gender" value={gender} onChange={genderChangeHandler}/>
+              </Form.Group>
+              <Button type="submit">Login</Button>
+            </Form>
+            </Modal.Body>
+          </Modal.Dialog>
+        </div>
         </>
     )
 };

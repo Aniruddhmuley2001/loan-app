@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Card from "react-bootstrap/Card";
 
 export default function ViewItems() {
     const empId = sessionStorage.getItem("emp_id"); 
@@ -34,11 +35,20 @@ export default function ViewItems() {
       <div className="card-body">
         <br></br>
   
-        <div>
+        {/* <div>
           <p>Employee ID: {userDetails.id}</p>
           <p>Designation: {userDetails.designation}</p>
           <p>Department: {userDetails.department}</p>
-        </div>
+        </div> */}
+        <Card border="light">
+          <Card.Body>
+            Employee ID: {userDetails.id}
+            &nbsp;
+            Designation: {userDetails.designation}
+            &nbsp;
+            Department: {userDetails.department}
+          </Card.Body>
+        </Card>
   
         <br></br>
         <div className="col-md-6">
@@ -74,17 +84,11 @@ export default function ViewItems() {
                           <td>{itemWithIssueId.item.itemMake}</td>
                           <td>{itemWithIssueId.item.itemCategory}</td>
   
-  
                           {/* <td >
       <Link to={"/edit/" + loan.regno}>Edit
                           </Link>
                         </td> */}
-                            
-  
-  
-                            
-  
-                          
+                   
                         </tr>
   
                       ))
