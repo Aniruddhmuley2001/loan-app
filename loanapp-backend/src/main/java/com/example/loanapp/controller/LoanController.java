@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +29,7 @@ public class LoanController {
 	
 	
 	@PostMapping("/saveLoan")
-	public String loanType(@RequestBody Loan l) {
+	public String loanType(@Valid @RequestBody Loan l) {
 		
 		String result = "";
 		result = loanService.saveLoan(l);
@@ -47,7 +49,7 @@ public class LoanController {
 	}
 	
 	@PutMapping("/updateLoan")
-	public String updateLoan(@RequestBody Loan l) {
+	public String updateLoan(@Valid @RequestBody Loan l) {
 		String result = "";
 		result = loanService.updateLoan(l);
 		

@@ -3,6 +3,8 @@ package com.example.loanapp.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,9 +26,8 @@ class ItemController {
 	@Autowired
 	ItemService itemService;
 	
-	
 	@PostMapping("/saveItem")
-	public String itemType(@RequestBody Item i) {
+	public String itemType(@Valid @RequestBody Item i) {
 		
 		String result = "";
 		result = itemService.saveItem(i);
@@ -41,7 +42,7 @@ class ItemController {
 	}
 	
 	@PutMapping("/updateItem")
-	public String updateLoan(@RequestBody Item i) {
+	public String updateLoan(@Valid @RequestBody Item i) {
 		String result = "";
 		result = itemService.updateItem(i);
 		

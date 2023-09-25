@@ -9,7 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -22,22 +24,28 @@ public class Item {
 	@Id
 	@GeneratedValue
 	@Column(name="item_id")
+	@NotNull(message = "Item id cannot be blank")
 	private int itemId;
 	
 	@Column(name="issue_status")
 	private boolean issueStatus;
 	
 	@Column(name="item_description", length=50, nullable=false)
+	@NotBlank(message = "Item description cannot be blank")
 	private String itemDescription;
 	
 	//Same as loan type
 	@Column(name="item_category",length=30, nullable=false)
+	@NotBlank(message = "Item category cannot be blank")
 	private String itemCategory;
 	
 	@Column(name="item_make", length=30, nullable=false)
+	@NotBlank(message = "Item make cannot be blank")
 	private String itemMake;
 	
 	@Column(name="item_value", nullable=false)
+	@Min(value = 1,message="Numeric Field: Positive number is required.")
+	@NotNull(message = "Item Value cannot be blank")
 	private int itemValue;
 	
 	@JsonBackReference

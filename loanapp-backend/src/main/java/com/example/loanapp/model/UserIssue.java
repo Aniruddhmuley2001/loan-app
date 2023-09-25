@@ -1,6 +1,8 @@
 package com.example.loanapp.model;
 
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,6 +22,8 @@ public class UserIssue {
 	
 	@Id
 	@Column(name="issue_id")
+	@Min(value=0,message="Issue Id is numeric field: Positive value is required")
+	@NotNull(message="Issue Id cannot be blank")
 	private int issueId;
 	
 	@JsonIgnore
