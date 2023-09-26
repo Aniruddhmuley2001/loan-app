@@ -20,7 +20,7 @@ import AddLoanData from './components/adminComponents/loanData/AddLoanData';
 import AddItemData from './components/adminComponents/itemData/AddItemData';
 import EditItemData from './components/adminComponents/itemData/EditItemData';
 import DeleteData from './components/adminComponents/DeleteData';
-import ErrorPage from './components/ErrorPage.js';
+import ErrorPage from './components/ErrorPage';
 
 const App = () => {
   return (
