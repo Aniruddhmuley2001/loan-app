@@ -106,9 +106,13 @@ public class ItemService {
 		return itemRepo.getDistinctDescriptionByMakeAndCategory(category, make);
 	}
 	
-	public Item getItemByMakeAndCategoryAndDescription(String category, String make, String description) 
+	public Integer getItemByMakeAndCategoryAndDescription(String category, String make, String description) 
+	
 	{
-		return itemRepo.getItemByMakeAndCategoryAndDescription(category, make, description);
+		
+		Integer i=itemRepo.getItemByMakeAndCategoryAndDescription(category, make, description);
+		System.out.println(i);
+		return i;
 	}
 	
 	public List<String> getItemByMake(){

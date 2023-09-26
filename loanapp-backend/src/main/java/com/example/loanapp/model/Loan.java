@@ -37,7 +37,9 @@ public class Loan {
 	@NotNull(message="Loan duration cannot be empty")
 	private int loanDuration;
 	
-	@JsonBackReference
+	// JsonBackReference replaced with JsonIgnore due to issues with saveLoan API
+//	@JsonBackReference
+	@JsonIgnore
 //	@OnDelete(action=OnDeleteAction.CASCADE)
 	@OneToMany(mappedBy="loan",fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 

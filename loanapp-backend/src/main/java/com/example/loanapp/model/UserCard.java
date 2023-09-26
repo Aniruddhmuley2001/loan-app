@@ -25,7 +25,7 @@ public class UserCard {
 	@NotBlank(message = "Row ID cannot be blank")
 	private String row_id;
 	
-//	@JsonBackReference
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
