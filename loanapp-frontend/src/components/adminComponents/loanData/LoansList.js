@@ -29,55 +29,75 @@ export default function LoansList() {
         setLoansData();
     }, []);
 
-    return (
+    if(loans.length === 0) {
+      return (
         <div>
-            <h3>Loan Master Data</h3>
-            <button onClick={() => navigate("./add")}>Add loan</button>
+          <h3>Loan Master Data</h3>
+          <button onClick={() => navigate("./add")}>Add loan</button>
 
-            <Outlet/>
+          <Outlet/>
 
-            <br></br>
-            <br></br>
+          <br></br>
+          <br></br>
 
-            <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <table className="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Loan ID</th>
-                      <th>Loan Type</th>
-                      <th>Loan Duration</th>
-                      <th>Operations</th>  
-                    </tr>
-                  </thead>
-                  <tbody>
+          <div className='container'>
+            <p>No data to display</p>
+          </div>
+        </div>
+      )
+    }
+    else {
+      return (
+          <div>
+              <h3>Loan Master Data</h3>
+              <button onClick={() => navigate("./add")}>Add loan</button>
   
-                    {
-                      
-                      loans.map((loan, index) => (
+              <Outlet/>
   
-                        <tr>
-                          <td scope="row">{loan.loanId}</td>
-                          <td>{loan.loanType}</td>
-                          <td>{loan.loanDuration}</td>
+              <br></br>
+              <br></br>
   
-                          <td > 
-                            <Link to={"./" + loan.loanId}>Edit</Link>, 
-                            {<Link onClick={() => deleteEntry(loan.loanId)}>Delete</Link>  }
-                          </td>
-                          
-                        </tr>
-  
-                      ))
-                    }
-  
-                  </tbody>
-                </table>
-  
+              <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <table className="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Loan ID</th>
+                        <th>Loan Type</th>
+                        <th>Loan Duration (mnths)</th>
+                        <th>Operations</th>  
+                      </tr>
+                    </thead>
+                    <tbody>
+    
+                      {
+                        
+                        loans.map((loan, index) => (
+    
+                          <tr>
+                            <td scope="row">{loan.loanId}</td>
+                            <td>{loan.loanType}</td>
+                            <td>{loan.loanDuration}</td>
+    
+                            <td > 
+                              <Link to={"./" + loan.loanId}>Edit</Link>, 
+                              {<Link onClick={() => deleteEntry(loan.loanId)}>Delete</Link>  }
+                            </td>
+                            
+                          </tr>
+    
+                        ))
+                      }
+    
+                    </tbody>
+                  </table>
+    
+                </div>
               </div>
             </div>
           </div>
-        </div>
-    )
+      )
+    }
+
 }

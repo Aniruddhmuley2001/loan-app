@@ -35,65 +35,85 @@ export default function UsersList() {
         setUsersData();
     }, []);
 
-    return (
+    if(users.length === 0) {
+      return (
         <div>
-            <h3>Customer Master Data</h3>
-            <button onClick={() => navigate("./add")}>Add customer</button>
+          <h3>Customer Master Data</h3>
+          <button onClick={() => navigate("./add")}>Add loan</button>
 
-            <Outlet/>
+          <Outlet/>
 
-            <br></br>
-            <br></br>
+          <br></br>
+          <br></br>
 
-            <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <table className="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Employee ID</th>
-                      <th>Employee Name</th>
-                      <th>Designation</th>
-                      <th>Department</th>
-                      <th>Gender</th>
-                      <th>Date Of Birth</th>
-                      <th>Date of Joining</th>
-                      <th>Operations</th>
+          <div className='container'>
+            <p>No data to display</p>
+          </div>
+        </div>
+      )
+    }
+    else {
+      return (
+          <div>
+              <h3>Customer Master Data</h3>
+              <button onClick={() => navigate("./add")}>Add customer</button>
   
-                    </tr>
-                  </thead>
-                  <tbody>
+              <Outlet/>
   
-                    {
-                      
-                      users.map((user, index) => (
+              <br></br>
+              <br></br>
   
-                        <tr>
-                          <td scope="row">{user.id}</td>
-                          <td>{user.name}</td>
-                          <td>{user.designation}</td>
-                          <td>{user.department}</td>
-                          <td>{user.gender}</td>
-                          <td>{user.dob}</td>
-                          <td>{user.doj}</td>
-  
-  
-                          <td > 
-                            <Link to={"./" + user.id}>Edit</Link>, 
-                            {<Link onClick={() => deleteEntry(user.id)}>Delete</Link>  }
-                          </td>
-                          
-                        </tr>
-  
-                      ))
-                    }
-  
-                  </tbody>
-                </table>
-  
+              <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <table className="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Designation</th>
+                        <th>Department</th>
+                        <th>Gender</th>
+                        <th>Date Of Birth</th>
+                        <th>Date of Joining</th>
+                        <th>Operations</th>
+    
+                      </tr>
+                    </thead>
+                    <tbody>
+    
+                      {
+                        
+                        users.map((user, index) => (
+    
+                          <tr>
+                            <td scope="row">{user.id}</td>
+                            <td>{user.name}</td>
+                            <td>{user.designation}</td>
+                            <td>{user.department}</td>
+                            <td>{user.gender}</td>
+                            <td>{user.dob}</td>
+                            <td>{user.doj}</td>
+    
+    
+                            <td > 
+                              <Link to={"./" + user.id}>Edit</Link>, 
+                              {<Link onClick={() => deleteEntry(user.id)}>Delete</Link>  }
+                            </td>
+                            
+                          </tr>
+    
+                        ))
+                      }
+    
+                    </tbody>
+                  </table>
+    
+                </div>
               </div>
             </div>
           </div>
-        </div>
-    )
+      )
+    }
+
 }

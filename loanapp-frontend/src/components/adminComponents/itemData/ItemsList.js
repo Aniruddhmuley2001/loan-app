@@ -29,62 +29,82 @@ export default function ItemsList() {
         setItemsData();
     }, []);
 
-    return (
+    if(items.length === 0) {
+      return (
         <div>
-            <h3>Item Master Data</h3>
-            <button onClick={() => navigate("./add")}>Add item</button>
+          <h3>Item Master Data</h3>
+          <button onClick={() => navigate("./add")}>Add loan</button>
 
-            <Outlet/>
+          <Outlet/>
 
-            <br></br>
-            <br></br>
+          <br></br>
+          <br></br>
 
-            <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <table className="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th>Item ID</th>
-                      <th>Description</th>
-                      <th>Issue Status</th>
-                      <th>Item Make</th>
-                      <th>Item Category</th>
-                      <th>Item Valuation</th>
-                      <th>Operations</th>
+          <div className='container'>
+            <p>No data to display</p>
+          </div>
+        </div>
+      )
+    }
+    else {
+      return (
+          <div>
+              <h3>Item Master Data</h3>
+              <button onClick={() => navigate("./add")}>Add item</button>
   
-                    </tr>
-                  </thead>
-                  <tbody>
+              <Outlet/>
   
-                    {
-                      
-                      items.map((item, index) => (
+              <br></br>
+              <br></br>
   
-                        <tr>
-                          <td scope="row">{item.itemId}</td>
-                          <td>{item.itemDescription}</td>
-                          <td>{item.issueStatus}</td>
-                          <td>{item.itemMake}</td>
-                          <td>{item.itemCategory}</td>
-                          <td>{item.itemValue}</td>  
-  
-                          <td > 
-                            <Link to={"./" + item.itemId}>Edit</Link>, 
-                            {<Link onClick={() => deleteEntry(item.itemId)}>Delete</Link>  }
-                          </td>
-                          
-                        </tr>
-  
-                      ))
-                    }
-  
-                  </tbody>
-                </table>
-  
+              <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <table className="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Item ID</th>
+                        <th>Description</th>
+                        <th>Issue Status</th>
+                        <th>Item Make</th>
+                        <th>Item Category</th>
+                        <th>Item Valuation</th>
+                        <th>Operations</th>
+    
+                      </tr>
+                    </thead>
+                    <tbody>
+    
+                      {
+                        
+                        items.map((item, index) => (
+    
+                          <tr>
+                            <td scope="row">{item.itemId}</td>
+                            <td>{item.itemDescription}</td>
+                            <td>{item.issueStatus}</td>
+                            <td>{item.itemMake}</td>
+                            <td>{item.itemCategory}</td>
+                            <td>{item.itemValue}</td>  
+    
+                            <td > 
+                              <Link to={"./" + item.itemId}>Edit</Link>, 
+                              {<Link onClick={() => deleteEntry(item.itemId)}>Delete</Link>  }
+                            </td>
+                            
+                          </tr>
+    
+                        ))
+                      }
+    
+                    </tbody>
+                  </table>
+    
+                </div>
               </div>
             </div>
           </div>
-        </div>
-    )
+      )
+    }
+
 }

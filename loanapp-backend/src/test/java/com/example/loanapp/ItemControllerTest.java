@@ -88,7 +88,7 @@ class ItemControllerTest {
 	public void testSaveItem() throws Exception {
 		Item item = new Item();
 		item.setItemId(1);
-		item.setIssueStatus(false);
+		item.setIssueStatus("No");
 		item.setItemCategory("Auto");
 		item.setItemMake("Electric");
 		item.setItemDescription("Tesla");
@@ -106,7 +106,7 @@ class ItemControllerTest {
 	public void testFindItems() throws Exception {
 		Item item = new Item();
 		item.setItemId(1);
-		item.setIssueStatus(false);
+		item.setIssueStatus("No");
 		item.setItemCategory("Auto");
 		item.setItemMake("Electric");
 		item.setItemDescription("Tesla");
@@ -128,7 +128,7 @@ class ItemControllerTest {
     public void testDeleteItem() throws Exception {
 		Item item = new Item();
 		item.setItemId(1);
-		item.setIssueStatus(false);
+		item.setIssueStatus("No");
 		item.setItemCategory("Auto");
 		item.setItemMake("Electric");
 		item.setItemDescription("Tesla");
@@ -145,7 +145,7 @@ class ItemControllerTest {
     public void testUpdateItem() throws Exception {
 		Item item = new Item();
 		item.setItemId(1);
-		item.setIssueStatus(false);
+		item.setIssueStatus("No");
 		item.setItemCategory("Auto");
 		item.setItemMake("Electric");
 		item.setItemDescription("Tesla");

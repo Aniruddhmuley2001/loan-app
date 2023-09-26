@@ -69,7 +69,7 @@ export default function AddLoanData() {
            
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Loan Duration: </Form.Label>
-                <Form.Control type="number" placeholder="Number of year" value={loanDuration} onChange={loanDurationChangeHandler}/>
+                <Form.Control type="number" placeholder="Number of months" value={loanDuration} onChange={loanDurationChangeHandler}/>
               </Form.Group>
 
               <Button type="submit">Register</Button>
