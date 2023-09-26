@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
+import { Modal, Form, Button } from 'react-bootstrap';
 
 export default function EditItemData() {
     let params = useParams();
@@ -64,12 +65,18 @@ export default function EditItemData() {
         event.preventDefault();
         axios
           .put(updateItemBaseURL, {
-            itemId: itemId,
+            itemId: parseInt(itemId, 10),
             itemStatus: itemStatus,
             itemDescription: itemDescription,
             itemMake: itemMake,
             itemCategory: itemCategory,
             itemValue: itemValue
+          }, {
+            headers: {
+              "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
+              "Access-Control-Allow-Methods": 'OPTIONS,POST,GET,DELETE,PUT', // this states the allowed methods
+              "Content-Type": "application/json" // this shows the expected content type
+            }
           })
           .then((response) => {
             alert("Item "+ itemId +" added!");

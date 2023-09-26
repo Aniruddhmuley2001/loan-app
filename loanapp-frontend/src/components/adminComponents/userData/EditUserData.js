@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
+import { Modal, Form, Button } from 'react-bootstrap';
 
 export default function EditUserData() {
     let {userId} = useParams();
@@ -84,6 +85,13 @@ export default function EditUserData() {
             dob: dob,
             doj: doj,
             gender: gender
+          }, 
+          {
+            headers: {
+              "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
+              "Access-Control-Allow-Methods": 'OPTIONS,POST,GET,DELETE,PUT', // this states the allowed methods
+              "Content-Type": "application/json" // this shows the expected content type
+            }
           })
           .then((response) => {
             // alert(response.data.name);
@@ -100,7 +108,7 @@ export default function EditUserData() {
          <div className="modal show" style={{ display: 'block', position: 'initial' }}>
           <Modal.Dialog>
             <Modal.Header>
-            <Modal.Title>Eidt User data</Modal.Title>
+            <Modal.Title>Edit User data</Modal.Title>
             </Modal.Header>
             <Modal.Body>
             <Form onSubmit={submitActionHandler}>

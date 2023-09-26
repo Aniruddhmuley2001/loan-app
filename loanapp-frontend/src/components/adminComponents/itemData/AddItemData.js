@@ -2,13 +2,14 @@ import React from 'react';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { Modal, Form, Button } from 'react-bootstrap';
 
 export default function AddItemData() {
     const baseURL = "http://localhost:7000/saveItem";
     const navigate = useNavigate();
     const adminId = sessionStorage.getItem("emp_id");
     const [itemId, setItemId] = useState("")
-    const [itemStatus, setItemStatus] = useState("")
+    const [itemStatus, setItemStatus] = useState("Y")
     const [itemDescription, setItemDescription] = useState("")
     const [itemMake, setItemMake] = useState("")
     const [itemCategory, setItemCategory] = useState("")
@@ -42,13 +43,19 @@ export default function AddItemData() {
         event.preventDefault();
         axios
           .post(baseURL, {
-            itemId: itemId,
+            itemId: parseInt(itemId, 10),
             itemStatus: itemStatus,
             itemDescription: itemDescription,
             itemMake: itemMake,
             itemCategory: itemCategory,
             itemValue: itemValue
-          })
+          }, {
+            headers: {
+              "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
+              "Access-Control-Allow-Methods": 'OPTIONS,POST,GET,DELETE,PUT', // this states the allowed methods
+              "Content-Type": "application/json" // this shows the expected content type
+            }
+          } )
           .then((response) => {
             alert("Item "+ itemId +" added!");
             navigate("/admin/" + adminId + "/items");

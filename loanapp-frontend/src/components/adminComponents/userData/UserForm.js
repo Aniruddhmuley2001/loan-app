@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { Modal, Form, Button } from 'react-bootstrap';
 
 export default function UserForm(props) {
     const baseURL = props.url;
@@ -76,14 +77,14 @@ export default function UserForm(props) {
          <div className="modal show" style={{ display: 'block', position: 'initial' }}>
           <Modal.Dialog>
             <Modal.Header>
-            <Modal.Title>Eidt User data</Modal.Title>
+            <Modal.Title>Add User data</Modal.Title>
             </Modal.Header>
             <Modal.Body>
             <Form onSubmit={submitActionHandler}>
            
               <Form.Group className="mb-3" controlId="formBasicID">
                 <Form.Label>Employee ID: </Form.Label>
-                <Form.Control type="text" placeholder="K100987" value={id} disabled />
+                <Form.Control type="text" placeholder="K100987" value={id} onChange={idChangeHandler} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasic">

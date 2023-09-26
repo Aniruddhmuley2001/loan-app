@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.loanapp.model.Loan;
-import com.example.loanapp.model.User;
 import com.example.loanapp.service.LoanService;
 
 @RestController
@@ -26,7 +25,7 @@ public class LoanController {
 	LoanService loanService;
 	
 	
-	@PostMapping("/saveLoan")
+	@PostMapping(value="/saveLoan", consumes={"application/json"})
 	public String loanType(@RequestBody Loan l) {
 		
 		String result = "";
@@ -46,7 +45,7 @@ public class LoanController {
 		return loanService.getLoanBytype();
 	}
 	
-	@PutMapping("/updateLoan")
+	@PutMapping(value="/updateLoan", consumes={"application/json"})
 	public String updateLoan(@RequestBody Loan l) {
 		String result = "";
 		result = loanService.updateLoan(l);

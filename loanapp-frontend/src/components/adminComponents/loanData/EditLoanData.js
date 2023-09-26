@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
+import { Modal, Form, Button } from 'react-bootstrap';
 
 export default function EditLoanData() {
     let params = useParams();
@@ -11,9 +12,9 @@ export default function EditLoanData() {
     const navigate = useNavigate();
     const adminId = sessionStorage.getItem("emp_id");
 
-    const [loanId, setLoanId] = useState("")
+    const [loanId, setLoanId] = useState(0)
     const [loanType, setLoanType] = useState("")
-    const [loanDuration, setLoanDuration] = useState("")
+    const [loanDuration, setLoanDuration] = useState(0)
 
     const setLoanData = () => {
         axios.get(getLoanBaseURL ).then((response) => {
@@ -46,9 +47,9 @@ export default function EditLoanData() {
         event.preventDefault();
         axios
           .put(updateLoanBaseURL, {
-            loanId: loanId,
+            loanId: parseInt(loanId, 10),
             loanType: loanType,
-            loanDuration: loanDuration,
+            loanDuration: parseInt(loanDuration, 10),
           })
           .then((response) => {
             alert("Loan "+ loanId +" added!");

@@ -1,8 +1,16 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 export default function UserDashboard() {
-    const empId = sessionStorage.getItem("emp_id")
+    const empId = sessionStorage.getItem("emp_id");
+    const navigate = useNavigate();
+
+    const logout = () => {
+        console.log('Hello')
+        sessionStorage.removeItem("emp_id");
+        navigate("/")
+    }
+
     return (
         <div>
             <h2>Welcome {empId}</h2>
@@ -30,7 +38,7 @@ export default function UserDashboard() {
                 </div>
 
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="/">Logout</a>
+                    <a className="navbar-brand" onClick={logout}>Logout</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>

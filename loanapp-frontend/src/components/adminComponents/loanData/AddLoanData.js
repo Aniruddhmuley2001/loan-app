@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { Modal, Form, Button } from 'react-bootstrap';
 
 export default function AddLoanData() {
     const baseURL = "http://localhost:7000/saveLoan";
@@ -27,9 +28,15 @@ export default function AddLoanData() {
         event.preventDefault();
         axios
           .post(baseURL, {
-            loanId: loanId,
+            loanId: parseInt(loanId, 10),
             loanType: loanType,
-            loanDuration: loanDuration,
+            loanDuration: parseInt(loanDuration, 10),
+          }, {
+            headers: {
+              "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
+              "Access-Control-Allow-Methods": 'OPTIONS,POST,GET,DELETE,PUT', // this states the allowed methods
+              "Content-Type": "application/json" // this shows the expected content type
+            }
           })
           .then((response) => {
             alert("Loan "+ loanId +" added!");
