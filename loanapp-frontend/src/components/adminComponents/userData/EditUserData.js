@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
+import { Modal, Form, Button } from 'react-bootstrap';
 
 export default function EditUserData() {
     let {userId} = useParams();
@@ -84,6 +85,13 @@ export default function EditUserData() {
             dob: dob,
             doj: doj,
             gender: gender
+          }, 
+          {
+            headers: {
+              "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
+              "Access-Control-Allow-Methods": 'OPTIONS,POST,GET,DELETE,PUT', // this states the allowed methods
+              "Content-Type": "application/json" // this shows the expected content type
+            }
           })
           .then((response) => {
             // alert(response.data.name);
@@ -97,7 +105,60 @@ export default function EditUserData() {
 
     return (
         <>
-        <form onSubmit={submitActionHandler}>
+         <div className="modal show" style={{ display: 'block', position: 'initial' }}>
+          <Modal.Dialog>
+            <Modal.Header>
+            <Modal.Title>Edit User data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <Form onSubmit={submitActionHandler}>
+           
+              <Form.Group className="mb-3" controlId="formBasicID">
+                <Form.Label>Employee ID: </Form.Label>
+                <Form.Control type="text" placeholder="K100987" value={id} disabled />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasic">
+                <Form.Label>Password: </Form.Label>
+                <Form.Control type="password" value={password} onChange={passwordChangeHandler}/>
+              </Form.Group>
+           
+              <Form.Group className="mb-3" controlId="formBasicItemCategory">
+                <Form.Label>Fullname: </Form.Label>
+                <Form.Control type="text" value={name} onChange={nameChangeHandler}/>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicItemCategory">
+                <Form.Label>Designation: </Form.Label>
+                <Form.Control type="text" value={designation} onChange={designationChangeHandler}/>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicItemCategory">
+                <Form.Label>Department: </Form.Label>
+                <Form.Control type="text" value={department} onChange={deptChangeHandler}/>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicItemCategory">
+                <Form.Label>Date Of Birth: </Form.Label>
+                <Form.Control type="date" value={dob} onChange={dobChangeHandler}/>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicItemCategory">
+                <Form.Label>Date of joining: </Form.Label>
+                <Form.Control type="date" value={doj} onChange={dojChangeHandler}/>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicItemCategory">
+                <Form.Label>Gender: </Form.Label>
+                <Form.Control type="text" value={gender} onChange={genderChangeHandler}/>
+              </Form.Group>
+              
+              <Button type="submit">Register</Button>
+            </Form>
+            </Modal.Body>
+          </Modal.Dialog>
+        </div>
+        {/* <form onSubmit={submitActionHandler}>
             <p>
             <label>Employee Id: <input type="text" value={id} disabled></input></label>
             </p>
@@ -131,7 +192,7 @@ export default function EditUserData() {
             </p>
 
             <button type="submit">Register</button>
-        </form>
+        </form> */}
         </>
     )
 }

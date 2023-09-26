@@ -17,7 +17,13 @@ export default function UsersList() {
     }
 
     const deleteEntry = (id) => {
-      axios.delete(deleteUserDataBaseURL+id).then((response) => {
+      axios.delete(deleteUserDataBaseURL+id, {
+        headers: {
+          "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
+          "Access-Control-Allow-Methods": 'OPTIONS,POST,GET,DELETE,PUT', // this states the allowed methods
+          "Content-Type": "application/json" // this shows the expected content type
+        }
+      }).then((response) => {
         alert("User deleted!");
         navigate("./delete")
       }).catch(error => {
