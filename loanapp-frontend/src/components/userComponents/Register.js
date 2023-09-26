@@ -132,7 +132,7 @@ const Register = () => {
           </button>
         </div>
         <p className="forgot-password text-right">
-          Already registered <a href="/user/login" style={{color:"black"}}><b>Login</b></a>
+          <b>Already registered?</b> <a href="/user/login" style={{color:"white"}}><b>Login</b></a>
         </p>
       </form>
             </main>

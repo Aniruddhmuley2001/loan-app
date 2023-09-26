@@ -17,7 +17,51 @@ const UserLogin = () => {
     const navigate = useNavigate();
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
-
+    const [lighttoggler,setLightToggler]=useState("false")
+    const [darktoggler,setDarkToggler]=useState("false")
+    const [autotoggler,setAutoToggler]=useState("false")
+    const [colormode,setColormode]=useState("dark");
+    const [classlight,setClassLight]=useState("dropdown-item d-flex align-items-center");
+    const [classdark,setClassDark]=useState("dropdown-item d-flex align-items-center active");
+   function lightclick(){
+    if(lighttoggler==="false"){
+      setLightToggler("true");
+    }
+   
+    
+   }
+   function darkclick(){
+    if(darktoggler==="false"){
+      setDarkToggler("true");
+    }
+    
+   }
+   function autoclick(){
+    if(autotoggler==="false"){
+      setAutoToggler("true");
+    }
+   
+   }
+   function lightClass(){
+    setClassLight("dropdown-item d-flex align-items-center active");
+    setClassDark("dropdown-item d-flex align-items-center");
+   }
+   function darkClass(){
+    setClassDark("dropdown-item d-flex align-items-center active");
+    setClassLight("dropdown-item d-flex align-items-center");
+   }
+   function colorClickLight(){
+    console.log(colormode);
+    setColormode("light");
+    console.log("actually light is clicked and below is the result");
+    console.log(colormode);
+   }
+   function colorClickDark(){
+    console.log(colormode);
+    setColormode("dark");
+    console.log("actually dark is clicked and below is the result");
+    console.log(colormode);
+   }
     const idChangeHandler = (event) => {
         setId(event.target.value);
     };
@@ -52,7 +96,7 @@ const UserLogin = () => {
       ;
 
     return (  
-      <>
+      <div data-bs-theme={colormode}>
       <Helmet>
       
     <title>Signin Template · Bootstrap v5.3</title>
@@ -101,14 +145,22 @@ const UserLogin = () => {
       </button>
       <ul className="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text" >
         <li>
-          <button type="button" className="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+          <button type="button" className={classlight} onClick={() => {
+          lightClass();
+          colorClickLight();
+          setLightToggler();
+        }} data-bs-theme-value="light" aria-pressed={lighttoggler} >
             <svg className="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
             Light
             <svg className="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
           </button>
         </li>
         <li>
-          <button type="button" className="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark" aria-pressed="true">
+          <button type="button" className={classdark} onClick={() => {
+          darkClass();
+          colorClickDark();
+          setDarkToggler();
+        }} data-bs-theme-value="dark" aria-pressed={darktoggler}>
             <svg className="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
             Dark
             <svg className="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
@@ -157,7 +209,7 @@ const UserLogin = () => {
 
 </div>
 
-     </>
+     </div>
     )
 };
 
