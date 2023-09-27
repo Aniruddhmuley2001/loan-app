@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -20,6 +22,7 @@ public class UserCard {
 	@Id
 //	@GeneratedValue
 	@Column(name="row_id")
+	@NotBlank(message = "Row ID cannot be blank")
 	private String row_id;
 	
 	@JsonBackReference
@@ -34,6 +37,7 @@ public class UserCard {
 	
 	@JsonFormat(pattern= "yyyy-MM-dd")
 	@Column(name="issue_date", nullable=false)
+	@Past(message="Issue date cannot exceed today's date")
 	private LocalDate issueDate;
 	
 	public String getRow_id() {

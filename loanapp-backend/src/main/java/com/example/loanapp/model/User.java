@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -25,29 +27,37 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User {
 	@Id
 	@Column(name="user_id")
+	@NotBlank(message = "ID cannot be blank")
 	private String id;
 	
 	@Column(length=10, nullable=false)
+	@NotBlank(message = "Password cannot be blank")
 	private String password;
 	
 	@Column(name="full_name",length=40, nullable=false)
+	@NotBlank(message = "Name cannot be blank")
 	private String name;
 	
 	@JsonFormat(pattern="yyyy-MM-dd")
+	@Past(message="Date Of Birth cannot exceed today's date")
 	@Column(nullable=false)
 	private LocalDate dob;
 	
 	@Column(length=30, nullable=false)
+	@NotBlank(message = "Designation cannot be blank")
 	private String designation;
 	
 	@Column(length=20, nullable=false)
+	@NotBlank(message = "Department cannot be blank")
 	private String department;
 	
 	@Column(nullable=false)
+	@NotBlank(message = "Please select a gender")
 	private String gender;
 	
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(nullable=false)
+	@Past(message="Date Of joining cannot exceed today's date")
 	private LocalDate doj;
 	
 //	@JsonBackReference

@@ -30,7 +30,7 @@ const ApplyLoan = () => {
             const json = await response.json();
             if (response.status === 200) {
                 setCategories(json);
-                setCategory(json[0]);
+                await setCategory(json[0]);
             } else {
                 setCategories([]);
             }
@@ -42,12 +42,13 @@ const ApplyLoan = () => {
         const data = async () => {
             const response = await fetch(`http://localhost:7000/${category}/getAllMake`);
             const json = await response.json();
-            console.log(json)
+            // console.log(json)
             setMakeArr(json);
-            setItemMake(json[0])
+            await setItemMake(json[0])
         };
-        if (category)
+        if (category){
             data();
+        }
     }, [category]);
 
     useEffect(() => {
@@ -57,12 +58,24 @@ const ApplyLoan = () => {
             );
             const json = await response.json();
             setDescription(json);
-            setItemDescription(json[0]);
+            await setItemDescription(json[0]);
         };
-        if (category && itemMake)
+        if (category && itemMake){
             data();
-    }, [category, itemMake]);
+        }
 
+    }, [category, itemMake]);
+    const getItemValue = async () => {
+        // alert(itemDescription);
+        const response = await fetch(
+            `http://localhost:7000/${category}/${itemMake}/${itemDescription}/getItem`
+
+        ).then((response)=>response.json());
+      //  alert(response);
+        await setValue(response);
+        // console.log(response)
+
+};
     useEffect(() => {
         // console.log("Inside 4th useeffect");
         const data = async () => {
@@ -80,27 +93,30 @@ const ApplyLoan = () => {
         };
 
         if (category && itemMake && itemDescription)
-            data();
+            getItemValue();
     }, [category, itemMake, itemDescription]);
 
 
 
-    const itemCategoryChangeHandler = (event) => {
-        setCategory(event.target.value);
+    const itemCategoryChangeHandler = async(event) => {
+         setCategory(event.target.value);
         // console.log(category);
+        await getItemValue();
+    }
+    const itemMakeChangeHandler = async (event) => {
+        setItemMake(event.target.value);
+        await getItemValue();
     }
 
     const itemDescriptionChangeHandler = (event) => {
         setItemDescription(event.target.value);
+        getItemValue();
     }
 
     // const itemValueChangeHandler = (event) => {
     //     setValue(event.target.value);
     // }
 
-    const itemMakeChangeHandler = (event) => {
-        setItemMake(event.target.value);
-    }
 
 
 

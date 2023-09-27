@@ -3,6 +3,8 @@ package com.example.loanapp.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import com.example.loanapp.model.UserCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,7 +49,7 @@ class UserController {
 	}
 	
 	@PostMapping("/saveUser")
-	public String saveUser(@RequestBody User u) throws AuthenticationFailedException{
+	public String saveUser(@Valid @RequestBody User u) throws AuthenticationFailedException{
 		String result = "";
 		result = userService.saveUser(u);
 		return result;
@@ -56,7 +58,7 @@ class UserController {
 	}
 	
 	@PutMapping("/updateUser")
-	public String updateUser(@RequestBody User u) {
+	public String updateUser(@Valid @RequestBody User u) {
 		String result = "";
 		result = userService.updateUser(u);
 		
@@ -64,7 +66,7 @@ class UserController {
 	}
 	
 	@DeleteMapping("/deleteUser/{emp_id}")
-	public String deleteUser(@PathVariable("emp_id") String emp_id) {
+	public String deleteUser(@Valid @PathVariable("emp_id") String emp_id) {
 		String result = "";
 		result = userService.deleteUser(emp_id);
 		
@@ -72,7 +74,7 @@ class UserController {
 	}
 	
 	@PostMapping("/loginUser")
-	public String loginUser (@RequestBody UserLogin u) throws AuthenticationFailedException {
+	public String loginUser (@Valid @RequestBody UserLogin u) throws AuthenticationFailedException {
 		String result = "";
 		result = userService.loginUser(u);
 		
@@ -91,7 +93,7 @@ class UserController {
 	}
 	
 	@PostMapping("/applyLoan")
-	public String applyLoan(@RequestBody ApplyLoan applyLoan) {
+	public String applyLoan(@Valid @RequestBody ApplyLoan applyLoan) {
 		return userService.applyLoan(applyLoan);
 	}
 }

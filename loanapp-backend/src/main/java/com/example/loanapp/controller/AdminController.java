@@ -1,5 +1,7 @@
 package com.example.loanapp.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +19,7 @@ public class AdminController {
 	AdminService adminService;
 	
 	@PostMapping("/saveAdmin")
-	public String saveAdmin(@RequestBody AdminLogin u) {
+	public String saveAdmin(@Valid @RequestBody AdminLogin u) {
 		String result = "";
 		result = adminService.saveAdmin(u);
 		
@@ -25,7 +27,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/loginAdmin")
-	public String loginAdmin(@RequestBody AdminLogin u) {
+	public String loginAdmin(@Valid @RequestBody AdminLogin u) {
 		String result = "";
 		result = adminService.loginAdmin(u);
 		

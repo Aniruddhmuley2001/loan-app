@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
+import { Modal, Form, Button } from 'react-bootstrap';
 
 export default function EditLoanData() {
     let params = useParams();
@@ -11,9 +12,9 @@ export default function EditLoanData() {
     const navigate = useNavigate();
     const adminId = sessionStorage.getItem("emp_id");
 
-    const [loanId, setLoanId] = useState("")
+    const [loanId, setLoanId] = useState(0)
     const [loanType, setLoanType] = useState("")
-    const [loanDuration, setLoanDuration] = useState("")
+    const [loanDuration, setLoanDuration] = useState(0)
 
     const setLoanData = () => {
         axios.get(getLoanBaseURL ).then((response) => {
@@ -46,9 +47,9 @@ export default function EditLoanData() {
         event.preventDefault();
         axios
           .put(updateLoanBaseURL, {
-            loanId: loanId,
+            loanId: parseInt(loanId, 10),
             loanType: loanType,
-            loanDuration: loanDuration,
+            loanDuration: parseInt(loanDuration, 10),
           })
           .then((response) => {
             alert("Loan "+ loanId +" added!");
@@ -61,7 +62,35 @@ export default function EditLoanData() {
 
     return (
         <>
-        <form onSubmit={submitActionHandler}>
+         <div className="modal show" style={{ display: 'block', position: 'initial' }}>
+          <Modal.Dialog>
+            <Modal.Header>
+              <Modal.Title>Edit Loan data</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <Form onSubmit={submitActionHandler}>
+           
+              <Form.Group className="mb-3" controlId="formBasicID">
+                <Form.Label>Loan ID</Form.Label>
+                <Form.Control type="number" placeholder="123456" value={loanId} onChange={loanIdChangeHandler} />
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasic">
+                <Form.Label>Loan Type: </Form.Label>
+                <Form.Control type="text" placeholder="Property" value={loanType} onChange={loanTypeChangeHandler}/>
+              </Form.Group>
+           
+              <Form.Group className="mb-3" controlId="formBasicItemCategory">
+                <Form.Label>Loan Duration: </Form.Label>
+                <Form.Control type="number" placeholder="Number of months" value={loanDuration} onChange={loanDurationChangeHandler}/>
+              </Form.Group>
+
+              <Button type="submit">Register</Button>
+            </Form>
+            </Modal.Body>
+          </Modal.Dialog>
+        </div>
+        {/* <form onSubmit={submitActionHandler}>
             <p>
             <label>Loan Id: <input type="text" value={loanId} disabled onChange={loanIdChangeHandler}></input></label>
             </p>
@@ -75,7 +104,7 @@ export default function EditLoanData() {
             </p>
 
             <button type="submit">Submit</button>
-        </form>
+        </form> */}
         </>
     )
 }

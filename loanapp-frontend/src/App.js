@@ -20,6 +20,7 @@ import AddLoanData from './components/adminComponents/loanData/AddLoanData';
 import AddItemData from './components/adminComponents/itemData/AddItemData';
 import EditItemData from './components/adminComponents/itemData/EditItemData';
 import DeleteData from './components/adminComponents/DeleteData';
+import ErrorPage from './components/ErrorPage';
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
       <h1>Loan Application</h1>
       <BrowserRouter>
       <Routes>
+        <Route path='*' element={<ErrorPage/>}/>
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/user/login" element={<UserLogin/>}/>
         <Route exact path="/admin/login" element={<AdminLogin/>}/>
@@ -36,24 +38,24 @@ const App = () => {
         <Route exact path="viewLoans" element={<ViewLoans/>}/>
         <Route exact path="viewItems" element={<ViewItems/>}/>
         <Route exact path="applyLoan" element={<ApplyLoan/>}/>
-        </Route>
+      </Route>
 
-        <Route path="/admin/:id" element={<AdminDashboard/>}>
-          <Route path="customers" element={<UsersList/>}/>
-          <Route path='customers/add' element={<AddUserData/>}/>
-          <Route path='customers/:userId' element={<EditUserData/>}/>
-          <Route path='customers/delete' element={<DeleteData path="customers" />}/>
+      <Route exact path="/admin/:id" element={<AdminDashboard/>}>
+        <Route exact path="customers" element={<UsersList/>}/>
+        <Route exact path='customers/add' element={<AddUserData/>}/>
+        <Route exact path='customers/:userId' element={<EditUserData/>}/>
+        <Route exact path='customers/delete' element={<DeleteData path="customers" />}/>
 
-          <Route path="items" element={<ItemsList/>}/>
-          <Route path="items/add" element={<AddItemData/>}/>
-          <Route path="items/:itemId" element={<EditItemData/>}/>
-          <Route path='items/delete' element={<DeleteData path="items"/>}/>
+        <Route exact path="items" element={<ItemsList/>}/>
+        <Route exact path="items/add" element={<AddItemData/>}/>
+        <Route exact path="items/:itemId" element={<EditItemData/>}/>
+        <Route exact path='items/delete' element={<DeleteData path="items"/>}/>
 
-          <Route path="loans" element={<LoansList/>}/>
-          <Route path="loans/add" element={<AddLoanData/>}/>
-          <Route path='loans/:loanId' element={<EditLoanData/>}/>
-          <Route path='loans/delete' element={<DeleteData path="loans"/>}/>
-        </Route>
+        <Route exact path="loans" element={<LoansList/>}/>
+        <Route exact path="loans/add" element={<AddLoanData/>}/>
+        <Route exact path='loans/:loanId' element={<EditLoanData/>}/>
+        <Route exact path='loans/delete' element={<DeleteData path="loans"/>}/>
+      </Route>
         
       </Routes>
       </BrowserRouter>
