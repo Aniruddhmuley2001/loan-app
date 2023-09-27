@@ -109,7 +109,7 @@ public class ItemService {
 	public List<Item> getItemByMakeAndCategoryAndDescription(String category, String make, String description) 
 	{
 		
-		Integer i=itemRepo.getItemByMakeAndCategoryAndDescription(category, make, description);
+		List<Item> i=itemRepo.getItemByMakeAndCategoryAndDescription(category, make, description);
 		System.out.println(i);
 		return i;
 	}

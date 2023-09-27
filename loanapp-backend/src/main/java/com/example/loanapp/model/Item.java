@@ -28,7 +28,7 @@ public class Item {
 	private int itemId;
 	
 	@Column(name="issue_status")
-	private String issueStatus;
+	private boolean issueStatus;
 	
 	@Column(name="item_description", length=50, nullable=false)
 	@NotBlank(message = "Item description cannot be blank")
@@ -61,11 +61,11 @@ public class Item {
 		this.itemId = itemId;
 	}
 
-	public String isIssueStatus() {
+	public boolean isIssueStatus() {
 		return issueStatus;
 	}
 
-	public void setIssueStatus(String issueStatus) {
+	public void setIssueStatus(boolean issueStatus) {
 		this.issueStatus = issueStatus;
 	}
 

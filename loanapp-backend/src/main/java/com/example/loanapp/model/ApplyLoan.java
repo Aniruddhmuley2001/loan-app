@@ -5,7 +5,7 @@ public class ApplyLoan {
 	private String itemCategory;
 	private String itemDescription;
 	private String itemMake;
-	private String itemValue;
+	private int itemValue;
 	
 	public String getId() {
 		return id;
@@ -31,10 +31,10 @@ public class ApplyLoan {
 	public void setItemMake(String itemMake) {
 		this.itemMake = itemMake;
 	}
-	public String getItemValue() {
+	public int getItemValue() {
 		return itemValue;
 	}
-	public void setItemValue(String itemValue) {
+	public void setItemValue(int itemValue) {
 		this.itemValue = itemValue;
 	}
 }

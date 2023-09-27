@@ -30,7 +30,7 @@ const ApplyLoan = () => {
             const json = await response.json();
             if (response.status === 200) {
                 setCategories(json);
-                await setCategory(json[0]);
+                setCategory(json[0]);
             } else {
                 setCategories([]);
             }
@@ -44,7 +44,7 @@ const ApplyLoan = () => {
             const json = await response.json();
             // console.log(json)
             setMakeArr(json);
-            await setItemMake(json[0])
+            setItemMake(json[0])
         };
         if (category){
             data();
@@ -58,24 +58,14 @@ const ApplyLoan = () => {
             );
             const json = await response.json();
             setDescription(json);
-            await setItemDescription(json[0]);
+            setItemDescription(json[0]);
         };
         if (category && itemMake){
             data();
         }
 
     }, [category, itemMake]);
-    const getItemValue = async () => {
-        // alert(itemDescription);
-        const response = await fetch(
-            `http://localhost:7000/${category}/${itemMake}/${itemDescription}/getItem`
 
-        ).then((response)=>response.json());
-      //  alert(response);
-        await setValue(response);
-        // console.log(response)
-
-};
     useEffect(() => {
         // console.log("Inside 4th useeffect");
         const data = async () => {
@@ -93,7 +83,7 @@ const ApplyLoan = () => {
         };
 
         if (category && itemMake && itemDescription)
-            getItemValue();
+            data();
     }, [category, itemMake, itemDescription]);
 
 
@@ -101,16 +91,16 @@ const ApplyLoan = () => {
     const itemCategoryChangeHandler = async(event) => {
          setCategory(event.target.value);
         // console.log(category);
-        await getItemValue();
+        // await getItemValue();
     }
     const itemMakeChangeHandler = async (event) => {
         setItemMake(event.target.value);
-        await getItemValue();
+        // await getItemValue();
     }
 
     const itemDescriptionChangeHandler = (event) => {
         setItemDescription(event.target.value);
-        getItemValue();
+        // getItemValue();
     }
 
     // const itemValueChangeHandler = (event) => {

@@ -37,7 +37,7 @@ public class UserCard {
 	
 	@JsonFormat(pattern= "yyyy-MM-dd")
 	@Column(name="issue_date", nullable=false)
-	@Past(message="Issue date cannot exceed today's date")
+//	@Past(message="Issue date cannot exceed today's date")
 	private LocalDate issueDate;
 	
 	public String getRow_id() {
