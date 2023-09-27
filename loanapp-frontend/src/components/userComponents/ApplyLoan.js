@@ -19,6 +19,7 @@ const ApplyLoan = () => {
     const [itemMake, setItemMake] = useState("");
     const [itemDescription, setItemDescription] = useState("");
     const [value, setValue] = useState(0);
+    const [item, setItem] = useState([]);
     const [categories, setCategories] = useState([]);
     const [makeArr, setMakeArr] = useState([]);
     const [description, setDescription] = useState([]);
@@ -63,16 +64,21 @@ const ApplyLoan = () => {
     }, [category, itemMake]);
 
     useEffect(() => {
+        // console.log("Inside 4th useeffect");
         const data = async () => {
             const response = await fetch(
                 `http://localhost:7000/${category}/${itemMake}/${itemDescription}/getItem`
 
             );
-
-            const parsedJson = await response.json();
-            console.log(parsedJson);
-            setValue(parsedJson.itemValue);
+            
+    
+        const parsedJson = await response.json();
+        console.log(parsedJson);
+        setItem(parsedJson[0]);
+        // setValue(item?.itemValue);
+        // console.log(item)
         };
+
         if (category && itemMake && itemDescription)
             data();
     }, [category, itemMake, itemDescription]);
@@ -88,9 +94,9 @@ const ApplyLoan = () => {
         setItemDescription(event.target.value);
     }
 
-    const itemValueChangeHandler = (event) => {
-        setValue(event.target.value);
-    }
+    // const itemValueChangeHandler = (event) => {
+    //     setValue(event.target.value);
+    // }
 
     const itemMakeChangeHandler = (event) => {
         setItemMake(event.target.value);
@@ -99,7 +105,7 @@ const ApplyLoan = () => {
 
 
     function submitHandler() {
-        const data = async () => {
+        const submitLoan = async () => {
             const response = await fetch(
                 `http://localhost:7000/applyLoan`,
                 {
@@ -112,19 +118,19 @@ const ApplyLoan = () => {
                         itemCategory: category,
                         itemDescription: itemDescription,
                         itemMake: itemMake,
-                        itemValue: value,
+                        itemValue: item?.itemValue,
                     }),
                 }
             );
             const json = await response.json();
-            console.log(response);
+            console.log(json);
             if (response.status === 200) {
                 alert("Loan applied Successfuly.")
             } else {
                 alert("Failed to apply for loan")
             }
         };
-        data();
+        submitLoan();
     }
 
 
@@ -173,11 +179,12 @@ const ApplyLoan = () => {
                 </p>
 
 
-                <p>
-                    <label>
+                <div>
+                    {/* <label>
                         Item Value: <input type="number" value={value} onChange={itemValueChangeHandler}></input>
-                    </label>
-                </p>
+                    </label> */}
+                    <div>Item value: {item?.itemValue}</div>
+                </div>
 
 
 

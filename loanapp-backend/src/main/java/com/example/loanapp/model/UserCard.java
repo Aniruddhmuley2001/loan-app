@@ -22,7 +22,7 @@ public class UserCard {
 	@Column(name="row_id")
 	private String row_id;
 	
-//	@JsonBackReference
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;

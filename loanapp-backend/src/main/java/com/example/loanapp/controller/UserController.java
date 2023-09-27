@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.example.loanapp.model.UserCard;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.loanapp.exception.AuthenticationFailedException;
+import com.example.loanapp.exception.ResourceNotFoundException;
 import com.example.loanapp.model.ApplyLoan;
 import com.example.loanapp.model.User;
 import com.example.loanapp.model.UserLogin;
@@ -43,11 +47,12 @@ class UserController {
 	}
 	
 	@PostMapping("/saveUser")
-	public String saveUser(@RequestBody User u) {
+	public String saveUser(@RequestBody User u) throws AuthenticationFailedException{
 		String result = "";
 		result = userService.saveUser(u);
-		
 		return result;
+		
+//		return new ResponseEntity<>("Employee added successsfully", HttpStatus.OK);
 	}
 	
 	@PutMapping("/updateUser")
@@ -67,15 +72,21 @@ class UserController {
 	}
 	
 	@PostMapping("/loginUser")
-	public String loginUser(@RequestBody UserLogin u) {
+	public String loginUser (@RequestBody UserLogin u) throws AuthenticationFailedException {
 		String result = "";
 		result = userService.loginUser(u);
+		
+//		if (result==null)
+//			
+//			return new ResponseEntity<>("Invalid Employee Id",HttpStatus.NOT_FOUND);
+//		else
+//			return new ResponseEntity<>(result, HttpStatus.OK);
 		
 		return result;
 	}
 	
 	@GetMapping("/findUserDetailsById/{emp_id}")
-	public List<User> findUserDetailsById(@PathVariable("emp_id") String emp_id){
+	public List<User> findUserDetailsById(@PathVariable("emp_id") String emp_id) throws ResourceNotFoundException{
 		return userService.findUserDetailsById(emp_id);
 	}
 	

@@ -83,11 +83,10 @@ class ItemController {
 	
 	// Get Item by Category, Make and Description
 	@GetMapping("/{category}/{make}/{description}/getItem")
-	public Item getItemByMakeAndCategoryAndDescription(@PathVariable String category, @PathVariable String make, @PathVariable String description) 	
+	public List<Item> getItemByMakeAndCategoryAndDescription(@PathVariable String category, @PathVariable String make, @PathVariable String description) 	
 	{
-		Item item = itemService.getItemByMakeAndCategoryAndDescription(category, make, description);
+		return itemService.getItemByMakeAndCategoryAndDescription(category, make, description);
 		
-		return item;
 	}
 	
 	@GetMapping("/allItemMakes")

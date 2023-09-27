@@ -45,8 +45,8 @@ const UserLogin = () => {
   return (
     <>
       <div className="container" style={{width: "60%",justifyContent: "center", alignItems:"center",display:'flex',flexDirection:'column',backgroundColor:'#232b27', borderRadius: "30px"}}>
-        <h2 class="fw-semi-bold mt-2 mb-2 text-uppercase text-white">Login</h2>
-        <p class="text-white-50 mb-3">Please enter your Employee Id and Password</p>
+        <h2 className="fw-semi-bold mt-2 mb-2 text-uppercase text-white">Login</h2>
+        <p className="text-white-50 mb-3">Please enter your Employee Id and Password</p>
 
         <Form className="col-12 col-md-8 col-lg-6 col-xl-5" onSubmit={submitActionHandler}>
           <Form.Group className="form-outline mb-4" controlId="formBasicEmail">

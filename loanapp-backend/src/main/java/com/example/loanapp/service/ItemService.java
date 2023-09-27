@@ -92,8 +92,8 @@ public class ItemService {
 	}
 	
 	public List<String> getItemBytype(){
-		List<String> loanType = itemRepo.findAll().stream().map(Item::getItemCategory).distinct().collect(Collectors.toList());
-		return loanType;
+		List<String> itemCategories = itemRepo.findAll().stream().map(Item::getItemCategory).distinct().collect(Collectors.toList());
+		return itemCategories;
 	}
 	
 	public List<String> getDistinctMakesByCategory(String category) 
@@ -106,7 +106,7 @@ public class ItemService {
 		return itemRepo.getDistinctDescriptionByMakeAndCategory(category, make);
 	}
 	
-	public Item getItemByMakeAndCategoryAndDescription(String category, String make, String description) 
+	public List<Item> getItemByMakeAndCategoryAndDescription(String category, String make, String description) 
 	{
 		return itemRepo.getItemByMakeAndCategoryAndDescription(category, make, description);
 	}

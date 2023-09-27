@@ -31,7 +31,7 @@ export default function ViewLoans() {
     }, []);
   
     return (
-      <div class="card-body">
+      <div className="card-body">
         <br></br>
         <div>
           <p>Employee ID: {userDetails.id}</p>
@@ -43,10 +43,10 @@ export default function ViewLoans() {
         <div className="col-md-6">
           <h4>Loans List</h4>
   
-          <div class="container">
-            <div class="row">
-              <div class="col-12">
-                <table class="table table-bordered table-striped">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <table className="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>Loan ID</th>
