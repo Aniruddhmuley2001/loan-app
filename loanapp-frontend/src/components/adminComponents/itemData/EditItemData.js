@@ -13,7 +13,7 @@ export default function EditItemData() {
     const adminId = sessionStorage.getItem("emp_id");
 
     const [itemId, setItemId] = useState("")
-    const [itemStatus, setItemStatus] = useState("")
+    const [itemIssueStatus, setItemStatus] = useState("")
     const [itemDescription, setItemDescription] = useState("")
     const [itemMake, setItemMake] = useState("")
     const [itemCategory, setItemCategory] = useState("")
@@ -23,7 +23,7 @@ export default function EditItemData() {
         axios.get(getItemBaseURL ).then((response) => {
           let item = response.data;
           setItemId(item.itemId);
-          setItemStatus(item.itemStatus);
+          setItemStatus(item.itemIssueStatus);
           setItemDescription(item.itemDescription);
           setItemMake(item.itemMake);
           setItemCategory(item.itemCategory);
@@ -63,27 +63,33 @@ export default function EditItemData() {
 
     const submitActionHandler = (event) => {
         event.preventDefault();
-        axios
-          .put(updateItemBaseURL, {
-            itemId: parseInt(itemId, 10),
-            itemStatus: itemStatus,
-            itemDescription: itemDescription,
-            itemMake: itemMake,
-            itemCategory: itemCategory,
-            itemValue: itemValue
-          }, {
-            headers: {
-              "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
-              "Access-Control-Allow-Methods": 'OPTIONS,POST,GET,DELETE,PUT', // this states the allowed methods
-              "Content-Type": "application/json" // this shows the expected content type
-            }
-          })
-          .then((response) => {
-            alert("Item "+ itemId +" added!");
-            navigate("/admin/" + adminId + "/items");
-          }).catch(error => {
-            alert("error==="+error);
-          });
+        if(itemValue<=0) {
+          alert('Please enter valid value');
+        }
+        else {
+
+          axios
+            .put(updateItemBaseURL, {
+              itemId: parseInt(itemId, 10),
+              issueStatus: itemIssueStatus==='Y' ? true : false,
+              itemDescription: itemDescription,
+              itemMake: itemMake,
+              itemCategory: itemCategory,
+              itemValue: itemValue
+            }, {
+              headers: {
+                "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
+                "Access-Control-Allow-Methods": 'OPTIONS,POST,GET,DELETE,PUT', // this states the allowed methods
+                "Content-Type": "application/json" // this shows the expected content type
+              }
+            })
+            .then((response) => {
+              alert("Item "+ itemId +" added!");
+              navigate("/admin/" + adminId + "/items");
+            }).catch(error => {
+              alert("error==="+error);
+            });
+        }
     
       };
 
@@ -104,27 +110,27 @@ export default function EditItemData() {
         
               <Form.Group className="mb-3" controlId="formBasicStatus">
                 <Form.Label>Item Status: </Form.Label>
-                <Form.Control type="text" placeholder="Item Status" value={itemStatus} onChange={itemStatusChangeHandler}/>
+                <Form.Control type="text" placeholder="Item Status" value={itemIssueStatus} onChange={itemStatusChangeHandler}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Item Category: </Form.Label>
-                <Form.Control type="text" placeholder="Eg./ Furniture" value={itemCategory} onChange={itemCategoryChangeHandler}/>
+                <Form.Control required type="text" placeholder="Eg./ Furniture" value={itemCategory} onChange={itemCategoryChangeHandler}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicItemMake">
                 <Form.Label>Item Make: </Form.Label>
-                <Form.Control type="text" placeholder="Wooden" value={itemMake} onChange={itemMakeChangeHandler}/>
+                <Form.Control required type="text" placeholder="Wooden" value={itemMake} onChange={itemMakeChangeHandler}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicItemDescrip">
                 <Form.Label>Item Description: </Form.Label>
-                <Form.Control type="text" placeholder="Depatment" value={itemDescription} onChange={itemDescriptionChangeHandler}/>
+                <Form.Control required type="text" placeholder="Depatment" value={itemDescription} onChange={itemDescriptionChangeHandler}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicDob">
                 <Form.Label>Item Value: </Form.Label>
-                <Form.Control type="number" value={itemValue} onChange={itemValueChangeHandler}/>
+                <Form.Control required type="number" value={itemValue} onChange={itemValueChangeHandler}/>
               </Form.Group>
               
               <Button type="submit">Register</Button>
@@ -138,7 +144,7 @@ export default function EditItemData() {
             </p>
 
             <p>
-            <label>Item Status: <input type="text" value={itemStatus} onChange={itemStatusChangeHandler}></input></label>
+            <label>Item Status: <input type="text" value={itemIssueStatus} onChange={itemStatusChangeHandler}></input></label>
             </p>
 
             <p>

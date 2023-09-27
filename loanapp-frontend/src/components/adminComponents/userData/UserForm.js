@@ -51,25 +51,45 @@ export default function UserForm(props) {
 
     const submitActionHandler = (event) => {
         event.preventDefault();
-        axios
-          .post(baseURL, {
-            id: id,
-            password: password,
-            name: name,
-            designation: designation,
-            department:department,
-            dob: dob,
-            doj: doj,
-            gender: gender
-          })
-          .then((response) => {
-            // alert(response.data.name);
-            alert("Employee "+ id +" added!");
-            navigate("/admin/" + adminId + "/customers");
-          }).catch(error => {
-            alert("error==="+error);
-          });
-    
+        if(dob >= doj) {
+          alert('DOB greater than DOJ');
+        }
+        else {
+
+          let today = new Date();
+          let dd = String(today.getDate()).padStart(2, '0');
+          let mm = String(today.getMonth()+1).padStart(2, '0');
+          let yyyy = today.getFullYear();
+          today = yyyy + '-' + mm + '-' + dd;
+
+          // Issue with present day date
+          if(dob>today || doj>today) {
+            alert('Cannot enter future date')
+          }
+          else {
+
+            axios
+              .post(baseURL, {
+                id: id,
+                password: password,
+                name: name,
+                designation: designation,
+                department:department,
+                dob: dob,
+                doj: doj,
+                gender: gender
+              })
+              .then((response) => {
+                // alert(response.data.name);
+                alert("Employee "+ id +" added!");
+                navigate("/admin/" + adminId + "/customers");
+              }).catch(error => {
+                alert("error==="+error);
+              });
+          }
+
+      
+        }
       };
 
     return (
@@ -84,42 +104,42 @@ export default function UserForm(props) {
            
               <Form.Group className="mb-3" controlId="formBasicID">
                 <Form.Label>Employee ID: </Form.Label>
-                <Form.Control type="text" placeholder="K100987" value={id} onChange={idChangeHandler} />
+                <Form.Control required type="text" placeholder="K100987" value={id} onChange={idChangeHandler} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasic">
                 <Form.Label>Password: </Form.Label>
-                <Form.Control type="password" value={password} onChange={passwordChangeHandler}/>
+                <Form.Control required type="password" value={password} onChange={passwordChangeHandler}/>
               </Form.Group>
            
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Fullname: </Form.Label>
-                <Form.Control type="text" value={name} onChange={nameChangeHandler}/>
+                <Form.Control required type="text" value={name} onChange={nameChangeHandler}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Designation: </Form.Label>
-                <Form.Control type="text" value={designation} onChange={designationChangeHandler}/>
+                <Form.Control required type="text" value={designation} onChange={designationChangeHandler}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Department: </Form.Label>
-                <Form.Control type="text" value={department} onChange={deptChangeHandler}/>
+                <Form.Control required type="text" value={department} onChange={deptChangeHandler}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Date Of Birth: </Form.Label>
-                <Form.Control type="date" value={dob} onChange={dobChangeHandler}/>
+                <Form.Control required type="date" value={dob} onChange={dobChangeHandler}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Date of joining: </Form.Label>
-                <Form.Control type="date" value={doj} onChange={dojChangeHandler}/>
+                <Form.Control required type="date" value={doj} onChange={dojChangeHandler}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Gender: </Form.Label>
-                <Form.Control type="text" value={gender} onChange={genderChangeHandler}/>
+                <Form.Control required type="text" value={gender} onChange={genderChangeHandler}/>
               </Form.Group>
               
               <Button type="submit">Register</Button>

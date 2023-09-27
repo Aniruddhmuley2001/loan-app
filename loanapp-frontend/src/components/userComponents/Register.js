@@ -51,26 +51,32 @@ const Register = () => {
 
     const submitActionHandler = (event) => {
         event.preventDefault();
-        axios
-          .post(baseURL, {
-            id: id,
-            password: password,
-            name: fullname,
-            designation: designation,
-            department:department,
-            dob: dob,
-            doj: doj,
-            gender: gender
-          })
-          .then((response) => {
-            // alert(response.data.fullname);
-            alert("Employee "+ fullname +" added!");
-            sessionStorage.setItem("emp_id", id);
-            navigate("/user/" + id );
-          }).catch(error => {
-            alert("error==="+error);
-          });
-    
+        if(dob >= doj) {
+          alert('DOB greater than DOJ');
+        }
+        else {
+
+          axios
+            .post(baseURL, {
+              id: id,
+              password: password,
+              name: fullname,
+              designation: designation,
+              department:department,
+              dob: dob,
+              doj: doj,
+              gender: gender
+            })
+            .then((response) => {
+              // alert(response.data.fullname);
+              alert("Employee "+ fullname +" added!");
+              sessionStorage.setItem("emp_id", id);
+              navigate("/user/" + id );
+            }).catch(error => {
+              alert("error==="+error);
+            });
+      
+        }
       };
 
     return (
@@ -84,35 +90,35 @@ const Register = () => {
             <Form onSubmit={submitActionHandler}>
               <Form.Group className="mb-3" controlId="formBasicID">
                 <Form.Label>Employee ID</Form.Label>
-                <Form.Control type="text" placeholder="Enter ID" value={id} onChange={idChangeHandler} />
+                <Form.Control required type="text" placeholder="Enter ID" value={id} onChange={idChangeHandler} />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={password} onChange={passwordChangeHandler}/>
+                <Form.Control required type="password" placeholder="Password" value={password} onChange={passwordChangeHandler}/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicName">
                 <Form.Label>Full Name</Form.Label>
-                <Form.Control type="test" placeholder="Name" value={fullname} onChange={fullnameChangeHandler}/>
+                <Form.Control required type="test" placeholder="Name" value={fullname} onChange={fullnameChangeHandler}/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicDesig">
                 <Form.Label>Designation</Form.Label>
-                <Form.Control type="test" placeholder="Designation" value={designation} onChange={designationChangeHandler}/>
+                <Form.Control required type="test" placeholder="Designation" value={designation} onChange={designationChangeHandler}/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicDept">
                 <Form.Label>Department</Form.Label>
-                <Form.Control type="test" placeholder="Depatment" value={department} onChange={deptChangeHandler}/>
+                <Form.Control required type="test" placeholder="Depatment" value={department} onChange={deptChangeHandler}/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicDob">
                 <Form.Label>Date of Birth</Form.Label>
-                <Form.Control type="date" value={dob} onChange={dobChangeHandler}/>
+                <Form.Control required type="date" value={dob} onChange={dobChangeHandler}/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicDoj">
                 <Form.Label>Date of Joining</Form.Label>
-                <Form.Control type="date" value={doj} onChange={dojChangeHandler}/>
+                <Form.Control required type="date" value={doj} onChange={dojChangeHandler}/>
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicGender">
                 <Form.Label>Gender</Form.Label>
-                <Form.Control type="test" placeholder="Gender" value={gender} onChange={genderChangeHandler}/>
+                <Form.Control required type="test" placeholder="Gender" value={gender} onChange={genderChangeHandler}/>
               </Form.Group>
               <Button type="submit">Login</Button>
             </Form>

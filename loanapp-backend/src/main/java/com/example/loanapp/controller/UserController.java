@@ -93,7 +93,7 @@ class UserController {
 	}
 	
 	@PostMapping("/applyLoan")
-	public String applyLoan(@RequestBody ApplyLoan applyLoan) {
+	public String applyLoan(@Valid @RequestBody ApplyLoan applyLoan) {
 		return userService.applyLoan(applyLoan);
 	}
 }

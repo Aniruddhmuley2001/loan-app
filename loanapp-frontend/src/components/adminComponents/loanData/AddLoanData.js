@@ -26,24 +26,30 @@ export default function AddLoanData() {
 
     const submitActionHandler = (event) => {
         event.preventDefault();
-        axios
-          .post(baseURL, {
-            loanId: parseInt(loanId, 10),
-            loanType: loanType,
-            loanDuration: parseInt(loanDuration, 10),
-          }, {
-            headers: {
-              "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
-              "Access-Control-Allow-Methods": 'OPTIONS,POST,GET,DELETE,PUT', // this states the allowed methods
-              "Content-Type": "application/json" // this shows the expected content type
-            }
-          })
-          .then((response) => {
-            alert("Loan "+ loanId +" added!");
-            navigate("/admin/" + adminId + "/loans");
-          }).catch(error => {
-            alert("error==="+error);
-          });
+        if(loanDuration<=0) {
+          alert('Please enter valid value');
+        }
+        else {
+
+          axios
+            .post(baseURL, {
+              loanId: parseInt(loanId, 10),
+              loanType: loanType,
+              loanDuration: parseInt(loanDuration, 10),
+            }, {
+              headers: {
+                "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
+                "Access-Control-Allow-Methods": 'OPTIONS,POST,GET,DELETE,PUT', // this states the allowed methods
+                "Content-Type": "application/json" // this shows the expected content type
+              }
+            })
+            .then((response) => {
+              alert("Loan "+ loanId +" added!");
+              navigate("/admin/" + adminId + "/loans");
+            }).catch(error => {
+              alert("error==="+error);
+            });
+        }
     
       };
 
@@ -64,12 +70,12 @@ export default function AddLoanData() {
 
               <Form.Group className="mb-3" controlId="formBasic">
                 <Form.Label>Loan Type: </Form.Label>
-                <Form.Control type="text" placeholder="Property" value={loanType} onChange={loanTypeChangeHandler}/>
+                <Form.Control required type="text" placeholder="Property" value={loanType} onChange={loanTypeChangeHandler}/>
               </Form.Group>
            
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Loan Duration: </Form.Label>
-                <Form.Control type="number" placeholder="Number of months" value={loanDuration} onChange={loanDurationChangeHandler}/>
+                <Form.Control required type="number" placeholder="Number of months" value={loanDuration} onChange={loanDurationChangeHandler}/>
               </Form.Group>
 
               <Button type="submit">Register</Button>

@@ -45,18 +45,23 @@ export default function EditLoanData() {
 
     const submitActionHandler = (event) => {
         event.preventDefault();
-        axios
-          .put(updateLoanBaseURL, {
-            loanId: parseInt(loanId, 10),
-            loanType: loanType,
-            loanDuration: parseInt(loanDuration, 10),
-          })
-          .then((response) => {
-            alert("Loan "+ loanId +" added!");
-            navigate("/admin/" + adminId + "/loans");
-          }).catch(error => {
-            alert("error==="+error);
-          });
+        if(loanDuration<=0) {
+          alert('Please enter valid value');
+        }
+        else {
+          axios
+            .put(updateLoanBaseURL, {
+              loanId: parseInt(loanId, 10),
+              loanType: loanType,
+              loanDuration: parseInt(loanDuration, 10),
+            })
+            .then((response) => {
+              alert("Loan "+ loanId +" added!");
+              navigate("/admin/" + adminId + "/loans");
+            }).catch(error => {
+              alert("error==="+error);
+            });
+        }
     
       };
 
@@ -77,12 +82,12 @@ export default function EditLoanData() {
 
               <Form.Group className="mb-3" controlId="formBasic">
                 <Form.Label>Loan Type: </Form.Label>
-                <Form.Control type="text" placeholder="Property" value={loanType} onChange={loanTypeChangeHandler}/>
+                <Form.Control required type="text" placeholder="Property" value={loanType} onChange={loanTypeChangeHandler}/>
               </Form.Group>
            
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Loan Duration: </Form.Label>
-                <Form.Control type="number" placeholder="Number of months" value={loanDuration} onChange={loanDurationChangeHandler}/>
+                <Form.Control required type="number" placeholder="Number of months" value={loanDuration} onChange={loanDurationChangeHandler}/>
               </Form.Group>
 
               <Button type="submit">Register</Button>

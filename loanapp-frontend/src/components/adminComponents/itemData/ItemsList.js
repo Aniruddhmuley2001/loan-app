@@ -82,7 +82,7 @@ export default function ItemsList() {
                           <tr>
                             <td scope="row">{item.itemId}</td>
                             <td>{item.itemDescription}</td>
-                            <td>{item.issueStatus}</td>
+                            <td>{item.issueStatus ? "Y" : "N"}</td>
                             <td>{item.itemMake}</td>
                             <td>{item.itemCategory}</td>
                             <td>{item.itemValue}</td>  
