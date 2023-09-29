@@ -1,0 +1,36 @@
+/* NotFoundPage.css */
+.error-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff; /* Solid white background inside the container */
+    padding: 3rem; /* Increased padding for a larger container */
+    border-radius: 15px; /* Increased border radius for a larger container */
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Add a shadow for depth */
+    max-width: 500px; /* Increased maximum width for a larger container */
+  }
+  
+  .display-4 {
+    font-size: 2.75rem; /* Slightly larger font size for the header */
+    color: #000; /* Black Text Color */
+  }
+  
+  .lead {
+    font-size: 1.2rem; /* Slightly larger font size for the text */
+    color: #333; /* Slightly darker text color than black */
+    margin-bottom: 2rem; /* Increased margin between text and button */
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
