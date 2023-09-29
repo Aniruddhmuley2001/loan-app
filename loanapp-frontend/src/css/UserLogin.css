@@ -1,0 +1,24 @@
+.leftBlock div{
+    float: left;
+    clear: none;
+    display: inline;
+}
+
+.rightBLock div{
+    float: right;
+}
+
+.vl {
+    border-left: 6px solid green;
+    height: 50px;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.zoom:hover {
+    transform: scale(1.25); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }

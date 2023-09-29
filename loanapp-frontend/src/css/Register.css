@@ -1,0 +1,5 @@
+.leftBlock div{
+    float: left;
+    clear: none;
+    display: inline;
+}
