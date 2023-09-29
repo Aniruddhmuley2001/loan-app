@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
 
 const ApplyLoan = () => {
@@ -142,10 +145,73 @@ const ApplyLoan = () => {
 
     return (
         <>
-            <div>
-                <p>Select Product and Apply for Loan</p>
-            </div>
-            <form onSubmit={submitHandler}>
+        <div className="modal show" style={{ display: 'block', position: 'initial' }}>
+          <Modal.Dialog>
+            <Modal.Header>
+              <Modal.Title>Select Product and Apply for Loan</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <Form onSubmit={submitHandler}>
+
+                <Form.Group className="mb-3" controlId="formBasicID">
+                    <Form.Label>Employee ID: </Form.Label>
+                    <Form.Control type="text" placeholder="Enter ID" value={empId} disabled/>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicID">
+                    <Form.Label>Item Category: 
+                        <Form.Select onChange={itemCategoryChangeHandler} >
+                            {
+                                categories.map((category, index) => (
+                                    <option key={index} value={category} >{category}</option>))
+                            }
+                        </Form.Select>
+
+                    </Form.Label>
+                    
+                </Form.Group> 
+
+                <Form.Group className="mb-3" controlId="formBasicID">
+                    <Form.Label>Item Make: 
+                        <Form.Select onChange={itemMakeChangeHandler} >
+                            {
+                                 makeArr.map((make, index) => (
+                                    <option key={index} value={make} >{make}</option>))
+                            }
+                        </Form.Select>
+
+                    </Form.Label>
+                    
+                </Form.Group> 
+
+                <Form.Group className="mb-3" controlId="formBasicID">
+                    <Form.Label>Item Description: 
+                        <Form.Select onChange={itemDescriptionChangeHandler} >
+                            {
+                                description.map((desc, index) => (
+                                    <option key={index} value={desc} >{desc}</option>))
+                            }
+                        </Form.Select>
+
+                    </Form.Label>
+                    
+                </Form.Group> 
+
+                <Form.Group className="mb-3" controlId="formBasicID">
+                    <Form.Label>Item value: </Form.Label>
+                    <Form.Control type="number" placeholder="Item value" value={value}/>
+                    <div>Item value: {item?.itemValue}</div>               
+                </Form.Group>
+
+                <Button type="submit">Apply Loan</Button>
+
+            </Form>  
+        
+            </Modal.Body>
+          </Modal.Dialog>
+    
+       
+            {/* <form onSubmit={submitHandler}>
 
                 <p>
                     <label>Employee Id: <input type="text" value={empId} disabled></input></label>
@@ -186,16 +252,17 @@ const ApplyLoan = () => {
 
 
                 <div>
-                    {/* <label>
-                        Item Value: <input type="number" value={value} onChange={itemValueChangeHandler}></input>
-                    </label> */}
+                    <label>
+                        Item Value: <input type="number" value={value} }></input>
+                    </label> 
                     <div>Item value: {item?.itemValue}</div>
                 </div>
 
 
 
                 <button type="submit">Apply Loan</button>
-            </form>
+            </form> */}
+            </div>
         </>
     )
 };
