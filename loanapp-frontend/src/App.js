@@ -36,7 +36,7 @@ const App = () => {
       <BrowserRouter>
       <Routes>
         <Route path='*' element={<ErrorPage/>}/>
-        <Route exact path="/" element={<UserLogin/>}/>
+        <Route exact path="/" element={<Home/>}/>
         <Route exact path="/user/login" element={<UserLogin/>}/>
         <Route exact path="/admin/login" element={<AdminLogin/>}/>
         <Route exact path="/user/register" element={<Register/>}/>
