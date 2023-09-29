@@ -77,12 +77,12 @@ export default function EditLoanData() {
            
               <Form.Group className="mb-3" controlId="formBasicID">
                 <Form.Label>Loan ID</Form.Label>
-                <Form.Control type="number" placeholder="123456" value={loanId} onChange={loanIdChangeHandler} />
+                <Form.Control type="number" disabled placeholder="123456" value={loanId} onChange={loanIdChangeHandler} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasic">
                 <Form.Label>Loan Type: </Form.Label>
-                <Form.Control required type="text" placeholder="Property" value={loanType} onChange={loanTypeChangeHandler}/>
+                <Form.Control required type="text" disabled placeholder="Property" value={loanType} onChange={loanTypeChangeHandler}/>
               </Form.Group>
            
               <Form.Group className="mb-3" controlId="formBasicItemCategory">

@@ -105,7 +105,7 @@ export default function EditItemData() {
 
               <Form.Group className="mb-3" controlId="formBasicID">
                 <Form.Label>Item ID</Form.Label>
-                <Form.Control type="text" placeholder="Enter ID: " value={itemId} onChange={itemIdChangeHandler} />
+                <Form.Control disabled type="text" placeholder="Enter ID: " value={itemId} onChange={itemIdChangeHandler} />
               </Form.Group>
         
               <Form.Group className="mb-3" controlId="formBasicStatus">

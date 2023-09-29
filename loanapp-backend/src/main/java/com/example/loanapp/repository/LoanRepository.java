@@ -14,7 +14,7 @@ import java.util.Map;
 public interface LoanRepository extends JpaRepository<Loan, Integer> {
 
 	@Query("SELECT l.loanId FROM Loan l WHERE l.loanType=?1")
-	public int findByLoanType(String itemCategory);
+	public Integer findByLoanType(String itemCategory);
 
 	@Query("SELECT uc.issueDate, l.loanId, l.loanType, l.loanDuration FROM Loan l INNER JOIN UserCard uc ON l.loanId = uc.loan.loanId WHERE uc.id=?1")
 	public List<Map<LocalDate,Object>> getLoansByEmpId(String empId);

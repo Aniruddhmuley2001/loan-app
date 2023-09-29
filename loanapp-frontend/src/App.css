@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.head{
+  text-align: center;
+  color: white;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+/* .bgImage{
+  background-image: url('./images/bg.jpg');
+  background-size: cover;
+} */

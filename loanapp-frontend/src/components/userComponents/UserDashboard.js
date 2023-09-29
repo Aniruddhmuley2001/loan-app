@@ -1,19 +1,20 @@
 import React from 'react'
 import { Outlet, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function UserDashboard() {
     const empId = sessionStorage.getItem("emp_id");
     const navigate = useNavigate();
 
     const logout = () => {
-        console.log('Hello')
         sessionStorage.removeItem("emp_id");
+        toast.info("Loogged Out!");
         navigate("/")
     }
 
     return (
         <div>
-            <h2>Welcome {empId}</h2>
+            {/* <h2>Welcome {empId}</h2> */}
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                     
                 <div className="container-fluid">
@@ -44,9 +45,13 @@ export default function UserDashboard() {
                     </button>
                 </div>
 
+                <div className="vl"></div>
+                <div className="container-fluid"><a className="navbar-brand">Welcome {empId}</a></div>
+
+
             </nav>
 
             <Outlet/>
         </div>
     )
-}
+} 
