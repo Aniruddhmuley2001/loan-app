@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useState,React } from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import "../../css/UserLogin.css";
+
+import { toast } from 'react-toastify';
 
 const UserLogin = () => {
 
     const baseURL = "http://localhost:7000/loginUser";
     const navigate = useNavigate();
     const [id, setId] = useState("")
-    const [password, setPassword] = useState("")
+    const [password, setPassword] = useState("");
 
     const idChangeHandler = (event) => {
         setId(event.target.value);
@@ -30,12 +33,14 @@ const UserLogin = () => {
           .then((response) => {
             console.log(response);
             if(response.data === "Login Success") {
-                alert("Employee "+ id +" logged in!");
+                // alert("Employee "+ id +" logged in!");
+                toast.success('Successfully logged In!',{autoClose:1500});
                 sessionStorage.setItem("emp_id", id);
                 navigate("/user/" + id )
             }
             else {
-                alert('Invalid credentials')
+                // alert('Invalid credentials')
+                toast.error('Invalid credentials',{autoClose:3000});
             }
           }).catch(error => {
             alert("error==="+error);
@@ -45,7 +50,7 @@ const UserLogin = () => {
 
     return (
         <>
-        <div className="modal show" style={{ display: 'block', position: 'initial' }}>
+          <div className="modal show" style={{ display: 'block', position: 'initial' }}>
           <Modal.Dialog>
             <Modal.Header>
               <Modal.Title>Login to your profile</Modal.Title>
@@ -63,19 +68,26 @@ const UserLogin = () => {
               </Form.Group>
               <Button type="submit">Login</Button>
             </Form>
-            {/* <form onSubmit={submitActionHandler}>
-              <p>
-              <label>Employee ID: <input type="text" value={id} onChange={idChangeHandler}></input></label>
-              </p>
-              <p>
-              <label>Password: <input type="password" value={password} onChange={passwordChangeHandler}></input></label>
-              </p>
 
-              <Button type="submit">Login</Button>
-            </form> */}
+            <hr></hr>
+
+            <div className="leftBlock">
+                <div className="center">
+                  <button onClick={() => navigate("/user/register")} type="button" class="btn btn-secondary zoom">Sign Up</button>
+                
+                </div>
+
+                {/* <div className="vl "></div> */}
+
+                <div className="center">
+                <button onClick={() => navigate("/admin/login")} type="button" class="btn btn-info zoom">Admin Login</button>
+                </div>
+              </div>
+            
+           
             </Modal.Body>
           </Modal.Dialog>
-        </div>
+          </div>
         </>
     )
 };

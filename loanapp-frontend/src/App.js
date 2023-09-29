@@ -22,14 +22,21 @@ import EditItemData from './components/adminComponents/itemData/EditItemData';
 import DeleteData from './components/adminComponents/DeleteData';
 import ErrorPage from './components/ErrorPage';
 
+import { toast,ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import background from "./images/bg.jpg"
+
+
 const App = () => {
   return (
-    <div className="App">
-      <h1>Loan Application</h1>
+    <div className="App bgImage">
+      <ToastContainer />
+      <h1 className="head">Loan Application</h1>
       <BrowserRouter>
       <Routes>
         <Route path='*' element={<ErrorPage/>}/>
-        <Route exact path="/" element={<Home/>}/>
+        <Route exact path="/" element={<UserLogin/>}/>
         <Route exact path="/user/login" element={<UserLogin/>}/>
         <Route exact path="/admin/login" element={<AdminLogin/>}/>
         <Route exact path="/user/register" element={<Register/>}/>

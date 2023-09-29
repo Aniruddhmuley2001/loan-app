@@ -120,7 +120,7 @@ const Register = () => {
                 <Form.Label>Gender</Form.Label>
                 <Form.Control required type="test" placeholder="Gender" value={gender} onChange={genderChangeHandler}/>
               </Form.Group>
-              <Button type="submit">Login</Button>
+              <Button type="submit">Register</Button>
             </Form>
             </Modal.Body>
           </Modal.Dialog>
