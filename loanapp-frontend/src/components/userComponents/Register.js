@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-toastify';
 
 const Register = () => {
     const baseURL = "http://localhost:7000/saveUser";
@@ -17,7 +18,7 @@ const Register = () => {
     const [doj, setDoj] = useState("")
     const [gender, setGender] = useState("");
     const [datevalidationError, setDateValidationError] = useState('');
-    const [idvalidationError, setIdValidationError] = useState('');
+    const [passwordvalidationError, setPasswordValidationError] = useState('');
     const validateDates = (dob, doj) => {
      
       const currentDate = getCurrentDate();
@@ -36,6 +37,23 @@ const Register = () => {
         setDateValidationError('');
       }
     };
+    const validatePassword = (value) => {
+      
+      // Define a regular expression pattern for a strong password
+      const strongPasswordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/;
+      
+      if (strongPasswordPattern.test(value)) {
+       
+        setPasswordValidationError('');
+      } 
+      else { 
+        
+        setPasswordValidationError(
+          'Password must be between (6-40) characters long and include at least one uppercase letter, one number, and one special character among(!@#$%^&*).'
+        );
+      }
+     
+    };
    
     const getCurrentDate = () => {
       const now = new Date();
@@ -47,8 +65,15 @@ const Register = () => {
     }
 
     const passwordChangeHandler = (event) => {
-        setPassword(event.target.value);
+      setPassword(event.target.value);
     }
+    const passwordBlurHandler = (event) => {
+      const newValue = event.target.value;
+      
+      // Perform password validation on blur
+      validatePassword(newValue);
+
+    };
 
     const fullnameChangeHandler = (event) => {
         setFullname(event.target.value);
@@ -82,9 +107,12 @@ const Register = () => {
         const dobDate = new Date(dob);
         const dojDate = new Date(doj);
        
-        if(dob >= doj||dobDate>=currentDate||dojDate>=currentDate) {
-    
-          if(dobDate>=dojDate){
+        if(dob >= doj||dobDate>=currentDate||dojDate>=currentDate||passwordvalidationError) {
+    if(passwordvalidationError){
+      
+      setPasswordValidationError( 'Password must be between (6-40) characters long and include at least one uppercase letter, one number, and one special character among (!@#$%^&*).');
+    }
+          else if(dobDate>=dojDate){
             setDateValidationError('Date of birth must be less than the date of joining');
           }
           else{
@@ -115,11 +143,22 @@ else{
             })
             .then((response) => {
               // alert(response.data.fullname);
-              alert("Employee "+ fullname +" added!");
-              sessionStorage.setItem("emp_id", id);
-              navigate("/user/" + id );
+              if(response.data === "User saved successfuly.") {
+                // alert("Employee "+ id +" logged in!");
+                toast.success("Employee "+ fullname +" added!",{autoClose:1500});
+                sessionStorage.setItem("emp_id", id);
+                navigate("/user/" + id )
+            }
+             else if(response.data=== "User already exists."){
+              toast.error("User already exists,please login with the credentials of the user");
+              navigate("/user/login");
+             }
+             else{
+              toast.error("Registration unsuccessful");
+             }
             }).catch(error => {
-              alert("error==="+error);
+              console.log(error);
+              alert("error==="+error.response.data.message);
             });
       
         }
@@ -138,9 +177,14 @@ else{
                 <Form.Label>Employee ID</Form.Label>
                 <Form.Control required type="text" placeholder="Enter ID" value={id} onChange={idChangeHandler} />
               </Form.Group>
+
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control required type="password" placeholder="Password" value={password} onChange={passwordChangeHandler}/>
+                <Form.Control required type="password" placeholder="Password" value={password} onChange={passwordChangeHandler} onBlur={passwordBlurHandler}/>
+                
+                {passwordvalidationError && (
+    <p style={{ color: 'red' }}>{passwordvalidationError}</p>
+  )}
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicName">
                 <Form.Label>Full Name</Form.Label>
@@ -183,6 +227,7 @@ else{
             </Form>
             
             {datevalidationError && <p style={{ color: 'red' }}>{datevalidationError}</p>}
+            
             </Modal.Body>
           </Modal.Dialog>
         </div>

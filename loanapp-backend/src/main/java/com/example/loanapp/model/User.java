@@ -30,7 +30,7 @@ public class User {
 	@NotBlank(message = "ID cannot be blank")
 	private String id;
 	
-	@Column(length=10, nullable=false)
+	@Column(length=40, nullable=false)
 	@NotBlank(message = "Password cannot be blank")
 	private String password;
 	

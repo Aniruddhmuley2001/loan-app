@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.loanapp.exception.DesignationLengthExceededException;
 import com.example.loanapp.model.ApplyLoan;
 import com.example.loanapp.model.Item;
 import com.example.loanapp.model.Loan;
@@ -47,7 +48,7 @@ public class UserService {
 		return userRepo.fetchAllUsers();
 	}
 	
-	public String saveUser(User u) {
+	public String saveUser(User u) throws DesignationLengthExceededException {
 		String result="";
 		
 		User obj = null;
@@ -57,11 +58,19 @@ public class UserService {
 			result="User already exists.";
 		}
 		else {
-			obj = userRepo.save(u);
-			if(obj!=null)
-				result = "User saved successfuly.";
-			else
-				result = "Registration failed!";
+			if(u.getDesignation().length()>=30) {
+				System.out.println("designationlengthexceededconsoleoutput");
+				throw new DesignationLengthExceededException("Designation length should be less than 30 characters");
+			}
+			
+			else {
+				obj = userRepo.save(u);
+				if(obj!=null)
+					result = "User saved successfuly.";
+				else
+					result = "Registration failed!";
+			}
+			
 		}
 		
 		return result;
