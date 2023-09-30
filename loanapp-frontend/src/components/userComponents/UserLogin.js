@@ -37,8 +37,13 @@ const UserLogin = () => {
                 navigate("/user/" + id )
             }
             else {
-                // alert('Invalid credentials')
-                toast.error('Invalid credentials',{autoClose:3000});
+              if(response.data==="Invalid Employee"){
+                toast.error('Employee Not registered,',{autoClose:3000});
+              }
+              else{
+                toast.error('Invalid credentials,wrong password,Please recheck the password',{autoClose:3000});
+              }
+               
             }
           }).catch(error => {
             alert("error==="+error);
