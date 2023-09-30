@@ -20,7 +20,7 @@ const Register = () => {
     const [datevalidationError, setDateValidationError] = useState('');
     const [passwordvalidationError, setPasswordValidationError] = useState('');
     const validateDates = (dob, doj) => {
-     
+     //debugger
       const currentDate = getCurrentDate();
       const dobDate = new Date(dob);
       const dojDate = new Date(doj);
@@ -28,7 +28,8 @@ const Register = () => {
       if (dobDate >= currentDate ) {
         setDateValidationError('Date of birth must be less than the current date');
       } 
-      else if( dojDate >= currentDate){
+      else if( dojDate > currentDate){
+        console.log("csjdncsjknjk");
         setDateValidationError('Date of joining must be less than the current date');
       }
       else if (dobDate >= dojDate) {
@@ -40,7 +41,7 @@ const Register = () => {
     const validatePassword = (value) => {
       
       // Define a regular expression pattern for a strong password
-      const strongPasswordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$/;
+      const strongPasswordPattern = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,40}$/;
       
       if (strongPasswordPattern.test(value)) {
        
@@ -57,7 +58,7 @@ const Register = () => {
    
     const getCurrentDate = () => {
       const now = new Date();
-      return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      return new Date(now.getFullYear(), now.getMonth(), now.getDate(),now.getHours(),now.getMinutes(),now.getSeconds());
     };
     const idChangeHandler = (event) => {
         setId(event.target.value);
@@ -107,7 +108,7 @@ const Register = () => {
         const dobDate = new Date(dob);
         const dojDate = new Date(doj);
        
-        if(dob >= doj||dobDate>=currentDate||dojDate>=currentDate||passwordvalidationError) {
+        if(dob >= doj||dobDate>=currentDate||dojDate>currentDate||passwordvalidationError) {
     if(passwordvalidationError){
       
       setPasswordValidationError( 'Password must be between (6-40) characters long and include at least one uppercase letter, one number, and one special character among (!@#$%^&*).');
@@ -120,7 +121,7 @@ if(dobDate>=currentDate){
   setDateValidationError('Date of birth must be less than the current date');
 }
 else{
-  setDateValidationError('Date of joining must be less than the current date');
+  setDateValidationError('Date of joining must be less than or equal to the current date');
 }
           }
         

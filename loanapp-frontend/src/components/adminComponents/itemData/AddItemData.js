@@ -8,7 +8,7 @@ export default function AddItemData() {
     const baseURL = "http://localhost:7000/saveItem";
     const navigate = useNavigate();
     const adminId = sessionStorage.getItem("emp_id");
-    const [itemId, setItemId] = useState("")
+    const [itemId, setItemId] = useState("1")
     const [itemIssueStatus, setItemStatus] = useState("Y")
     const [itemDescription, setItemDescription] = useState("")
     const [itemMake, setItemMake] = useState("")
@@ -62,7 +62,7 @@ export default function AddItemData() {
               }
             } )
             .then((response) => {
-              alert("Item "+ itemId +" added!");
+              alert("Item added!");
               navigate("/admin/" + adminId + "/items");
             }).catch(error => {
               alert("error==="+error);
@@ -76,15 +76,15 @@ export default function AddItemData() {
         <div className="modal show" style={{ display: 'block', position: 'initial' }}>
           <Modal.Dialog>
             <Modal.Header>
-              <Modal.Title>Add Item data</Modal.Title>
+              <Modal.Title >Add Item data</Modal.Title>
             </Modal.Header>
             <Modal.Body>
             <Form onSubmit={submitActionHandler}>
 
-              <Form.Group className="mb-3" controlId="formBasicID">
+              {/* <Form.Group className="mb-3" controlId="formBasicID">
                 <Form.Label>Item ID</Form.Label>
                 <Form.Control type="text" placeholder="Enter ID: " value={itemId} onChange={itemIdChangeHandler} />
-              </Form.Group>
+              </Form.Group> */}
         
               <Form.Group className="mb-3" controlId="formBasicStatus">
                 <Form.Label>Item Status: </Form.Label>
@@ -103,7 +103,7 @@ export default function AddItemData() {
 
               <Form.Group className="mb-3" controlId="formBasicItemDescrip">
                 <Form.Label>Item Description: </Form.Label>
-                <Form.Control required type="text" placeholder="Depatment" value={itemDescription} onChange={itemDescriptionChangeHandler}/>
+                <Form.Control required type="text" placeholder="Description" value={itemDescription} onChange={itemDescriptionChangeHandler}/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicDob">

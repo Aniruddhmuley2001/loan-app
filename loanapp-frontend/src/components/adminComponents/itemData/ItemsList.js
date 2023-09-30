@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+
 
 export default function ItemsList() {
     const navigate = useNavigate();
@@ -32,7 +34,7 @@ export default function ItemsList() {
     if(items.length === 0) {
       return (
         <div>
-          <h3>Item Master Data</h3>
+          <h3 style={{color:'white'}}>Item Master Data</h3>
           <button onClick={() => navigate("./add")}>Add loan</button>
 
           <Outlet/>
@@ -49,8 +51,8 @@ export default function ItemsList() {
     else {
       return (
           <div>
-              <h3>Item Master Data</h3>
-              <button onClick={() => navigate("./add")}>Add item</button>
+              <h3 style={{color:'white'}}>Item Master Data</h3>
+              <Button  onClick={() => navigate("./add")}>Add item</Button>
   
               <Outlet/>
   

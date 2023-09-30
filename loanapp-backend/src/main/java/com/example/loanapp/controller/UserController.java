@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.loanapp.exception.AuthenticationFailedException;
+import com.example.loanapp.exception.DesignationLengthExceededException;
 import com.example.loanapp.exception.ResourceNotFoundException;
 import com.example.loanapp.model.ApplyLoan;
 import com.example.loanapp.model.User;
@@ -49,7 +50,7 @@ class UserController {
 	}
 	
 	@PostMapping("/saveUser")
-	public String saveUser(@Valid @RequestBody User u) throws AuthenticationFailedException{
+	public String saveUser(@Valid @RequestBody User u) throws AuthenticationFailedException, DesignationLengthExceededException{
 		String result = "";
 		result = userService.saveUser(u);
 		return result;

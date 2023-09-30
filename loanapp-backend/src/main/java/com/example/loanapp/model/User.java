@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -47,7 +48,7 @@ public class User {
 	@NotBlank(message = "Designation cannot be blank")
 	private String designation;
 	
-	@Column(length=20, nullable=false)
+	@Column(length=50, nullable=false)
 	@NotBlank(message = "Department cannot be blank")
 	private String department;
 	
@@ -57,7 +58,7 @@ public class User {
 	
 	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(nullable=false)
-	@Past(message="Date Of joining cannot exceed today's date")
+	@PastOrPresent(message="Date Of joining cannot exceed today's date")
 	private LocalDate doj;
 	
 //	@JsonBackReference

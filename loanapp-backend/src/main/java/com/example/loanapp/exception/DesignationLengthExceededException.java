@@ -1,6 +1,6 @@
 package com.example.loanapp.exception;
 
-public class DesignationLengthExceededException extends RuntimeException{
+public class DesignationLengthExceededException extends Exception{
 
 	private static final long serialVersionUID = 1L;
 

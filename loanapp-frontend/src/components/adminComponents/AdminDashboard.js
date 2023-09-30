@@ -1,19 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 export default function AdminDashboard() {
     const empId = sessionStorage.getItem("emp_id");
     const navigate = useNavigate();
-
+    const { id } = useParams();
     const logout = () => {
         console.log('Hello')
         sessionStorage.removeItem("emp_id");
         navigate("/")
     }
+    useEffect(() => {
+        if (id !== empId) {
+          
+          toast.error("You have to log in to the Admin's account to continue");
+          navigate("/admin/login");
+        }
+      }, [id, empId, navigate]);
 
   return (
     <div>
-        <h2>Welcome admin {empId}</h2>
+        <h2 style={{color:'white'}}>Welcome Admin </h2>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                 
             <div className="container-fluid">
@@ -43,7 +51,8 @@ export default function AdminDashboard() {
                 <span className="navbar-toggler-icon"></span>
                 </button>
             </div>
-
+            <div className="vl"></div>
+                <div className="container-fluid"><a className="navbar-brand">Welcome {empId}</a></div>
         </nav>
 
         <Outlet/>

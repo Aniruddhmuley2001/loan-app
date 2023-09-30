@@ -1,19 +1,28 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+import { useParams } from 'react-router-dom';
 export default function UserDashboard() {
     const empId = sessionStorage.getItem("emp_id");
+    const { id } = useParams();
     const navigate = useNavigate();
 
     const logout = () => {
         sessionStorage.removeItem("emp_id");
-        toast.info("Loogged Out!");
+        toast.info("Logged Out!");
         navigate("/")
     }
-
+    useEffect(() => {
+        if (id !== empId) {
+          
+          toast.error("You have to log in to the Employee's account to continue");
+          navigate("/user/login");
+        }
+      }, [id, empId, navigate]);
+     
     return (
         <div>
+      
             {/* <h2>Welcome {empId}</h2> */}
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                     
@@ -53,5 +62,7 @@ export default function UserDashboard() {
 
             <Outlet/>
         </div>
-    )
+    );
+
+   
 } 
