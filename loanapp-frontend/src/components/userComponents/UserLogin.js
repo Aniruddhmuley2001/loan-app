@@ -39,9 +39,10 @@ const UserLogin = () => {
         else {
           if (response.data === "Invalid Employee") {
             toast.error('Employee Not registered,', { autoClose: 3000 });
+            navigate("/user/register");
           }
           else {
-            toast.error('Invalid credentials,wrong password,Please recheck the password', { autoClose: 3000 });
+            toast.error('Invalid credentials. ', { autoClose: 3000 });
           }
 
         }
@@ -62,12 +63,12 @@ const UserLogin = () => {
             <Form onSubmit={submitActionHandler}>
               <Form.Group className="mb-3" controlId="formBasicID">
                 <Form.Label>Employee ID</Form.Label>
-                <Form.Control type="text" placeholder="Enter ID" value={id} onChange={idChangeHandler} />
+                <Form.Control required type="text" placeholder="Enter ID" value={id} onChange={idChangeHandler} />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={password} onChange={passwordChangeHandler} />
+                <Form.Control required type="password" placeholder="Password" value={password} onChange={passwordChangeHandler} />
               </Form.Group>
               <Button type="submit">Login</Button>
             </Form>
