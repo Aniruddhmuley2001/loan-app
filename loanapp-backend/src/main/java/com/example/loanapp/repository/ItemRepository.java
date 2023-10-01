@@ -12,13 +12,16 @@ import com.example.loanapp.model.Item;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 	
-	@Query("SELECT item FROM Item item WHERE item.itemCategory=?1 AND item.itemMake=?2")
-	public Item findByMakeCategory(String itemCategory, String itemMake);
+	@Query("SELECT DISTINCT i.itemCategory FROM Item as i WHERE i.issueStatus=true")
+	List<String> getDistinctCategory();
 	
-	@Query("SELECT DISTINCT i.itemMake FROM Item as i WHERE i.itemCategory=?1")
+	@Query("SELECT item FROM Item item WHERE item.itemCategory=?1 AND item.itemMake=?2 AND item.issueStatus=true")
+	public Item findByMakeCategory(String itemCategory, String itemMake);	
+	
+	@Query("SELECT DISTINCT i.itemMake FROM Item as i WHERE i.itemCategory=?1 AND i.issueStatus=true")
 	List<String> getDistinctMakesByCategory(String category);
 	
-	@Query("SELECT DISTINCT i.itemDescription FROM Item as i WHERE i.itemCategory=?1 AND i.itemMake=?2")
+	@Query("SELECT DISTINCT i.itemDescription FROM Item as i WHERE i.itemCategory=?1 AND i.itemMake=?2 AND i.issueStatus=true")
 	List<String> getDistinctDescriptionByMakeAndCategory(String category, String make);
 	
 	@Query("SELECT i FROM Item as i WHERE i.itemCategory=?1 AND i.itemMake=?2 AND i.itemDescription=?3")

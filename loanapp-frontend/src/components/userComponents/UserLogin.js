@@ -31,7 +31,6 @@ const UserLogin = () => {
       .then((response) => {
         console.log(response);
         if (response.data === "Login Success") {
-          // alert("Employee "+ id +" logged in!");
           toast.success('Successfully logged In!', { autoClose: 1500 });
           sessionStorage.setItem("emp_id", id);
           navigate("/user/" + id)

@@ -8,7 +8,6 @@ export default function AdminDashboard() {
     const navigate = useNavigate();
     const { id } = useParams();
     const logout = () => {
-        console.log('Hello')
         sessionStorage.removeItem("emp_id");
         navigate("/")
     }

@@ -29,7 +29,6 @@ const AdminLogin = () => {
         password: password
       })
       .then((response) => {
-        console.log(response);
         if (response.data === "Login Success") {
           toast.success('Successfully logged In!', { autoClose: 1500 });
           sessionStorage.setItem("emp_id", id);

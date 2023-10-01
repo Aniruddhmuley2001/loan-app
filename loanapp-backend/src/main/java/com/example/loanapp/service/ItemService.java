@@ -92,8 +92,10 @@ public class ItemService {
 	}
 	
 	public List<String> getItemBytype(){
-		List<String> itemCategories = itemRepo.findAll().stream().map(Item::getItemCategory).distinct().collect(Collectors.toList());
-		return itemCategories;
+//		List<String> itemCategories = itemRepo.findAll().stream().map(Item::getItemCategory).distinct().collect(Collectors.toList());
+//		return itemCategories;
+		
+		return itemRepo.getDistinctCategory();
 	}
 	
 	public List<String> getDistinctMakesByCategory(String category) 

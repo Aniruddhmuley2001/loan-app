@@ -31,7 +31,6 @@ export default function EditUserData() {
       setDateValidationError('Date of birth must be less than the current date');
     }
     else if (dojDate > currentDate) {
-      console.log("csjdncsjknjk");
       setDateValidationError('Date of joining must be less than the current date');
     }
     else if (dobDate >= dojDate) {

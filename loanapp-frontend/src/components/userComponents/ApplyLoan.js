@@ -46,11 +46,10 @@ const ApplyLoan = () => {
         const data = async () => {
             const response = await fetch(`http://localhost:7000/${category}/getAllMake`);
             const json = await response.json();
-            // console.log(json)
             setMakeArr(json);
             setItemMake(json[0])
         };
-        if (category){
+        if (category) {
             data();
         }
     }, [category]);
@@ -64,26 +63,22 @@ const ApplyLoan = () => {
             setDescription(json);
             setItemDescription(json[0]);
         };
-        if (category && itemMake){
+        if (category && itemMake) {
             data();
         }
 
     }, [category, itemMake]);
 
     useEffect(() => {
-        // console.log("Inside 4th useeffect");
         const data = async () => {
             const response = await fetch(
                 `http://localhost:7000/${category}/${itemMake}/${itemDescription}/getItem`
 
             );
-            
-    
-        const parsedJson = await response.json();
-        console.log(parsedJson);
-        setItem(parsedJson[0]);
-        // setValue(item?.itemValue);
-        // console.log(item)
+
+
+            const parsedJson = await response.json();
+            setItem(parsedJson[0]);
         };
 
         if (category && itemMake && itemDescription)
@@ -92,9 +87,8 @@ const ApplyLoan = () => {
 
 
 
-    const itemCategoryChangeHandler = async(event) => {
-         setCategory(event.target.value);
-        // console.log(category);
+    const itemCategoryChangeHandler = async (event) => {
+        setCategory(event.target.value);
         // await getItemValue();
     }
     const itemMakeChangeHandler = async (event) => {
@@ -106,13 +100,6 @@ const ApplyLoan = () => {
         setItemDescription(event.target.value);
         // getItemValue();
     }
-
-    // const itemValueChangeHandler = (event) => {
-    //     setValue(event.target.value);
-    // }
-
-
-
 
     function submitHandler() {
         const submitLoan = async () => {
@@ -133,7 +120,7 @@ const ApplyLoan = () => {
                 }
             );
             const json = await response.json();
-            console.log(json);
+            // console.log(json);
             if (response.status === 200) {
                 toast.success('Loan Applied Successfully!', { autoClose: 1500 });
             } else {
@@ -146,73 +133,73 @@ const ApplyLoan = () => {
 
     return (
         <>
-        <div className="modal show" style={{ display: 'block', position: 'initial' }}>
-          <Modal.Dialog>
-            <Modal.Header>
-              <Modal.Title>Select Product and Apply for Loan</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-            <Form onSubmit={submitHandler}>
+            <div className="modal show" style={{ display: 'block', position: 'initial' }}>
+                <Modal.Dialog>
+                    <Modal.Header>
+                        <Modal.Title>Select Product and Apply for Loan</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={submitHandler}>
 
-                <Form.Group className="mb-3" controlId="formBasicID">
-                    <Form.Label>Employee ID: </Form.Label>
-                    <Form.Control type="text" placeholder="Enter ID" value={empId} disabled/>
-                </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicID">
+                                <Form.Label>Employee ID: </Form.Label>
+                                <Form.Control type="text" placeholder="Enter ID" value={empId} disabled />
+                            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicID">
-                    <Form.Label>Item Category: 
-                        <Form.Select onChange={itemCategoryChangeHandler} >
-                            {
-                                categories.map((category, index) => (
-                                    <option key={index} value={category} >{category}</option>))
-                            }
-                        </Form.Select>
+                            <Form.Group className="mb-3" controlId="formBasicID">
+                                <Form.Label>Item Category:
+                                    <Form.Select onChange={itemCategoryChangeHandler} >
+                                        {
+                                            categories.map((category, index) => (
+                                                <option key={index} value={category} >{category}</option>))
+                                        }
+                                    </Form.Select>
 
-                    </Form.Label>
-                    
-                </Form.Group> 
+                                </Form.Label>
 
-                <Form.Group className="mb-3" controlId="formBasicID">
-                    <Form.Label>Item Make: 
-                        <Form.Select onChange={itemMakeChangeHandler} >
-                            {
-                                 makeArr.map((make, index) => (
-                                    <option key={index} value={make} >{make}</option>))
-                            }
-                        </Form.Select>
+                            </Form.Group>
 
-                    </Form.Label>
-                    
-                </Form.Group> 
+                            <Form.Group className="mb-3" controlId="formBasicID">
+                                <Form.Label>Item Make:
+                                    <Form.Select onChange={itemMakeChangeHandler} >
+                                        {
+                                            makeArr.map((make, index) => (
+                                                <option key={index} value={make} >{make}</option>))
+                                        }
+                                    </Form.Select>
 
-                <Form.Group className="mb-3" controlId="formBasicID">
-                    <Form.Label>Item Description: 
-                        <Form.Select onChange={itemDescriptionChangeHandler} >
-                            {
-                                description.map((desc, index) => (
-                                    <option key={index} value={desc} >{desc}</option>))
-                            }
-                        </Form.Select>
+                                </Form.Label>
 
-                    </Form.Label>
-                    
-                </Form.Group> 
+                            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicID">
-                    <Form.Label>Item value: </Form.Label>
-                    <Form.Control type="number" placeholder="Item value" value={item?.itemValue}/>
-                    {/* <div>Item value: {item?.itemValue}</div>                */}
-                </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicID">
+                                <Form.Label>Item Description:
+                                    <Form.Select onChange={itemDescriptionChangeHandler} >
+                                        {
+                                            description.map((desc, index) => (
+                                                <option key={index} value={desc} >{desc}</option>))
+                                        }
+                                    </Form.Select>
 
-                <Button type="submit">Apply Loan</Button>
+                                </Form.Label>
 
-            </Form>  
-        
-            </Modal.Body>
-          </Modal.Dialog>
-    
-       
-            {/* <form onSubmit={submitHandler}>
+                            </Form.Group>
+
+                            <Form.Group className="mb-3" controlId="formBasicID">
+                                <Form.Label>Item value: </Form.Label>
+                                <Form.Control type="number" placeholder="Item value" value={item?.itemValue} />
+                                {/* <div>Item value: {item?.itemValue}</div>                */}
+                            </Form.Group>
+
+                            <Button type="submit">Apply Loan</Button>
+
+                        </Form>
+
+                    </Modal.Body>
+                </Modal.Dialog>
+
+
+                {/* <form onSubmit={submitHandler}>
 
                 <p>
                     <label>Employee Id: <input type="text" value={empId} disabled></input></label>
