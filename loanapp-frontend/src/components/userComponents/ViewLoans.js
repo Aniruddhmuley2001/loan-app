@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Card from "react-bootstrap/Card";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 export default function ViewLoans() {
-  const empId = sessionStorage.getItem("emp_id"); 
+  const empId = sessionStorage.getItem("emp_id");
   const fetchUserDetailsBaseURL = `http://localhost:7000/fetchUserDetails/${empId}`;
   const fetchLoansURL = `http://localhost:7000/fetchLoansById/${empId}`;
   const [userDetails, setUserDetails] = useState([]);
@@ -17,85 +17,80 @@ export default function ViewLoans() {
       alert("Error Ocurred while loading User Data: " + error);
     })
   }
-  
+
   const setLoanData = () => {
-    axios.get(fetchLoansURL ).then((response) => {
+    axios.get(fetchLoansURL).then((response) => {
       setLoanDetails(response.data);
     }).catch(error => {
       alert("Error Ocurred while fetching Loans Data:" + error);
     });
   }
-  
-    useEffect(() => {
-      setUserData();
-      setLoanData();
-    }, []);
-  
-    return (
-      <div className="card-body">
-        <br></br>
-        {/* <div>
-          <p>Employee ID: {userDetails.id}</p>
-          <p>Designation: {userDetails.designation}</p>
-          <p>Department: {userDetails.department}</p>
-        </div> */}
+
+  useEffect(() => {
+    setUserData();
+    setLoanData();
+  }, []);
+
+  return (
+    <div className="card-body">
+      <br></br>
 
       <Card border="light">
-          <Card.Body>
-            Employee ID: {userDetails.id}
-            &nbsp;
-            Designation: {userDetails.designation}
-            &nbsp;
-            Department: {userDetails.department}
-          </Card.Body>
-        </Card>
+        <Card.Body>
+          Employee ID: {userDetails.id}
+          &nbsp;
+          Designation: {userDetails.designation}
+          &nbsp;
+          Department: {userDetails.department}
+        </Card.Body>
+      </Card>
 
-        <div>
-          <h4>Loans List</h4>
-  
-          <div class="container">
-            {
-              loans.length > 0 && 
-              <div class="row">
-                <div class="col-12">
-                  <table class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Loan ID</th>
-                        <th>Loan Type</th>
-                        <th>Loan Duration (In Years)</th>
-                        <th>Card Issue Date</th>
-                        {/* <th scope="col">Action</th> */}
-    
-                      </tr>
-                    </thead>
-                    <tbody>
-    
-                      {
-                        
-                        loans.map((obj, index) => (
-    
-                          <tr key={index}>
-                            <th scope="row">{obj.loans.loanId}</th>
-                            <td>{obj.loans.loanType}</td>
-                            <td>{obj.loans.loanDuration}</td>
-                            <td>{obj.issueDate}</td>
-    
-                            {/* <td >
+      <div>
+        <h4 className='white-text'>Loans List</h4>
+
+        <div class="container">
+          {
+            loans.length > 0 &&
+            <div class="row">
+              <div class="col-12">
+                <table class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>Loan ID</th>
+                      <th>Loan Type</th>
+                      <th>Loan Duration (In Years)</th>
+                      <th>Card Issue Date</th>
+                      {/* <th scope="col">Action</th> */}
+
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    {
+
+                      loans.map((obj, index) => (
+
+                        <tr key={index}>
+                          <th scope="row">{obj.loans.loanId}</th>
+                          <td>{obj.loans.loanType}</td>
+                          <td>{obj.loans.loanDuration}</td>
+                          <td>{obj.issueDate}</td>
+
+                          {/* <td >
         <Link to={"/edit/" + loan.regno}>Edit
                             </Link>
                           </td> */}
 
-                          </tr>
-    
-                        ))
-                      }
-    
-                    </tbody>
-                  </table>
-    
-    
-                  {/* <select >
+                        </tr>
+
+                      ))
+                    }
+
+                  </tbody>
+                </table>
+
+
+                {/* <select >
                   {
                   loans.map((loan, index) => (
                   <option key={loan.loanId} value={loan.loanId}>{loan.loanType}</option>
@@ -104,19 +99,26 @@ export default function ViewLoans() {
                     ))
                       }
                   </select> */}
-    
-                </div>
+
               </div>
-            }
-            {
-              loans.length === 0 && 
-              <p>No data to display</p>
-            }
-          </div>
-          
+            </div>
+          }
+          {
+            loans.length === 0 &&
+            <Container className="error-container">
+              <Row>
+                <Col md={8} className="mx-auto text-center">
+                  <h1 className="display-4">No data to display</h1>
+                  <p className="lead">Try applying for a Loan</p>
+                </Col>
+              </Row>
+            </Container>
+          }
         </div>
-  
+
       </div>
-  
-    );
+
+    </div>
+
+  );
 }

@@ -1,4 +1,5 @@
 .App {
+  margin-top: 2%;
   text-align: center;
 }
 
@@ -48,7 +49,6 @@
   padding: 10px;
 }
 
-/* .bgImage{
-  background-image: url('./images/bg.jpg');
-  background-size: cover;
-} */
+.white-text {
+  color: white;
+}

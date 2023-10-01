@@ -4,6 +4,7 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import { toast } from 'react-toastify';
 
 
 const ApplyLoan = () => {
@@ -134,9 +135,9 @@ const ApplyLoan = () => {
             const json = await response.json();
             console.log(json);
             if (response.status === 200) {
-                alert("Loan applied Successfuly.")
+                toast.success('Loan Applied Successfully!', { autoClose: 1500 });
             } else {
-                alert("Failed to apply for loan")
+                toast.error('Error applying for loan', { autoClose: 1500 });
             }
         };
         submitLoan();
@@ -199,8 +200,8 @@ const ApplyLoan = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicID">
                     <Form.Label>Item value: </Form.Label>
-                    <Form.Control type="number" placeholder="Item value" value={value}/>
-                    <div>Item value: {item?.itemValue}</div>               
+                    <Form.Control type="number" placeholder="Item value" value={item?.itemValue}/>
+                    {/* <div>Item value: {item?.itemValue}</div>                */}
                 </Form.Group>
 
                 <Button type="submit">Apply Loan</Button>

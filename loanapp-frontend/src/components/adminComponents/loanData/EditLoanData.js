@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from "axios";
 import { Modal, Form, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 export default function EditLoanData() {
     let params = useParams();
@@ -23,7 +24,8 @@ export default function EditLoanData() {
           setLoanType(loan.loanType);
           setLoanDuration(loan.loanDuration);
         }).catch(error => {
-          alert("Error Ocurred while loading loan data:" + error);
+          toast.error("Error Ocurred while loading loan data", { autoClose: 1500 });
+          console.log(error);
         });
     }
 
@@ -46,7 +48,7 @@ export default function EditLoanData() {
     const submitActionHandler = (event) => {
         event.preventDefault();
         if(loanDuration<=0) {
-          alert('Please enter valid value');
+          toast.error('Please enter valid value', { autoClose: 1500 });
         }
         else {
           axios
@@ -56,10 +58,11 @@ export default function EditLoanData() {
               loanDuration: parseInt(loanDuration, 10),
             })
             .then((response) => {
-              alert("Loan "+ loanId +" added!");
+              toast.success("Loan added successfully!", { autoClose: 1500 });
               navigate("/admin/" + adminId + "/loans");
             }).catch(error => {
-              alert("error==="+error);
+              toast.error("Facing issues in updating loan", { autoClose: 1500 });
+              console.log(error);
             });
         }
     
@@ -90,7 +93,7 @@ export default function EditLoanData() {
                 <Form.Control required type="number" placeholder="Number of months" value={loanDuration} onChange={loanDurationChangeHandler}/>
               </Form.Group>
 
-              <Button type="submit">Register</Button>
+              <Button type="submit">Save</Button>
             </Form>
             </Modal.Body>
           </Modal.Dialog>

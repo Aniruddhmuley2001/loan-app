@@ -32,7 +32,8 @@ const App = () => {
   return (
     <div className="App bgImage">
       <ToastContainer />
-      <h1 className="head">Loan Application</h1>
+      <h2 className="head"> Internal Loan Disbursement Application</h2>
+      <br/>
       <BrowserRouter>
       <Routes>
         <Route path='*' element={<ErrorPage/>}/>
