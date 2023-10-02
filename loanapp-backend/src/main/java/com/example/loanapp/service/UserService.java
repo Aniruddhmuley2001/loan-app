@@ -146,7 +146,7 @@ public class UserService {
 		return userRepo.findUserDetailsById(emp_id);
 	}
 	
-	//@Transactional
+	@Transactional
 	public String applyLoan(ApplyLoan applyLoan) {
 		System.out.println("test1");
 		String res="ch";
