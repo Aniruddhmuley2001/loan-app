@@ -24,7 +24,7 @@ export default function ItemsList() {
       toast.success("Item " + id + " deleted successfully!", { autoClose: 1500 });
       navigate("./delete")
     }).catch(error => {
-      toast.error("Error Occured while deleting item: ", { autoClose: 1500 });
+      toast.error("Error Occured while deleting item ", { autoClose: 1500 });
       console.log(error)
     })
   }
@@ -37,7 +37,8 @@ export default function ItemsList() {
     return (
       <div>
         <h3 className='white-text'>Item Master Data</h3>
-        <button onClick={() => navigate("./add")}>Add loan</button>
+        <br></br>
+        <Button onClick={() => navigate("./add")}>Add loan</Button>
 
         <Outlet />
 
@@ -45,10 +46,11 @@ export default function ItemsList() {
         <br></br>
 
         <div className='container'>
-          <Container className="error-container">
+          <Container className="empty-list-container">
             <Row>
               <Col md={8} className="mx-auto text-center">
-                <h1 className="display-4">No data to Display</h1>
+              <h3 className="display-4">No data to Display</h3>
+                <br></br>
                 <p className="lead">Try adding by clicking on the above button</p>
               </Col>
             </Row>

@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import './css/Register.css'
 import './css/UserLogin.css'
 import './css/UserDashboard.css'
+import './css/Common.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

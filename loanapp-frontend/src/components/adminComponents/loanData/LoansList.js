@@ -24,7 +24,12 @@ export default function LoansList() {
       toast.success("Loan " + id + " deleted successfully!", { autoClose: 1500 });
       navigate("./delete")
     }).catch(error => {
-      alert("Error Occured while deleting loan: ", { autoClose: 1500 });
+      if(error.response.data.message === "could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement") {
+        toast.error("Cannot delete active loan!", {autoClose: 1500});
+      }
+      else {
+        toast.error("Error Occured while deleting loan", { autoClose: 1500 });
+      }
       console.log(error)
     })
   }
@@ -37,6 +42,7 @@ export default function LoansList() {
     return (
       <div>
         <h3 className='white-text'>Loan Master Data</h3>
+        <br></br>
         <Button onClick={() => navigate("./add")}>Add loan</Button>
         <Outlet />
 
@@ -44,11 +50,11 @@ export default function LoansList() {
         <br></br>
 
         <div className='container'>
-          {/* <p className='white-text'>No data to display</p> */}
-          <Container className="error-container">
+          <Container className="empty-list-container">
             <Row>
               <Col md={8} className="mx-auto text-center">
-                <h1 className="display-4">No data to Display</h1>
+                <h3 className="display-4">No data to Display</h3>
+                <br></br>
                 <p className="lead">Try adding by clicking on the above button</p>
               </Col>
             </Row>

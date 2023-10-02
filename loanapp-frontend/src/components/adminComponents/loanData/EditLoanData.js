@@ -98,21 +98,6 @@ export default function EditLoanData() {
             </Modal.Body>
           </Modal.Dialog>
         </div>
-        {/* <form onSubmit={submitActionHandler}>
-            <p>
-            <label>Loan Id: <input type="text" value={loanId} disabled onChange={loanIdChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Loan Type: <input type="text" value={loanType} disabled onChange={loanTypeChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Loan Duration: <input type="number" value={loanDuration} onChange={loanDurationChangeHandler}></input></label>
-            </p>
-
-            <button type="submit">Submit</button>
-        </form> */}
         </>
     )
 }

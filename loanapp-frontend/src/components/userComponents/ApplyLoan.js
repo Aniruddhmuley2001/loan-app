@@ -203,59 +203,6 @@ const ApplyLoan = () => {
 
                     </Modal.Body>
                 </Modal.Dialog>
-
-
-                {/* <form onSubmit={submitHandler}>
-
-                <p>
-                    <label>Employee Id: <input type="text" value={empId} disabled></input></label>
-                </p>
-
-                <p>
-                    <label>Item Category:
-                        <select onChange={itemCategoryChangeHandler} >
-                            {
-                                categories.map((category, index) => (
-                                    <option key={index} value={category} >{category}</option>))
-                            }
-                        </select>
-                    </label>
-                </p>
-
-                <p>
-                    <label>Item Make:
-                        <select onChange={itemMakeChangeHandler}>
-                            {
-                                makeArr.map((make, index) => (
-                                    <option key={index} value={make} >{make}</option>))
-                            }
-                        </select>
-                    </label>
-                </p>
-
-                <p>
-                    <label>Item Description:
-                        <select onChange={itemDescriptionChangeHandler}>
-                            {
-                                description.map((desc, index) => (
-                                    <option key={index} value={desc} >{desc}</option>))
-                            }
-                        </select>
-                    </label>
-                </p>
-
-
-                <div>
-                    <label>
-                        Item Value: <input type="number" value={value} }></input>
-                    </label> 
-                    <div>Item value: {item?.itemValue}</div>
-                </div>
-
-
-
-                <button type="submit">Apply Loan</button>
-            </form> */}
             </div>
         </>
     )

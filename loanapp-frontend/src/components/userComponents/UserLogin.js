@@ -80,8 +80,6 @@ const UserLogin = () => {
 
               </div>
 
-              {/* <div className="vl "></div> */}
-
               <div className="center">
                 <button onClick={() => navigate("/admin/login")} type="button" class="btn btn-info zoom">Admin Login</button>
               </div>

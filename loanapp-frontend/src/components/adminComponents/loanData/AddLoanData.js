@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Modal, Form, Button } from 'react-bootstrap';
@@ -17,18 +17,18 @@ export default function AddLoanData() {
 
   useEffect(() => {
     const data = async () => {
-        const response = await fetch(itemCategoryURL);
-       
-        const json = await response.json();
-        if (response.status === 200) {
-            setLoanTypes(json);
-            setLoanType(json[0]);
-        } else {
-          setLoanTypes([]);
-        }
+      const response = await fetch(itemCategoryURL);
+
+      const json = await response.json();
+      if (response.status === 200) {
+        setLoanTypes(json);
+        setLoanType(json[0]);
+      } else {
+        setLoanTypes([]);
+      }
     };
     data();
-}, []);
+  }, []);
   const loanIdChangeHandler = (event) => {
     setLoanId(event.target.value);
   }
@@ -89,13 +89,13 @@ export default function AddLoanData() {
               <Form.Group className="mb-3" controlId="formBasic">
                 <Form.Label>Loan Type: </Form.Label>
                 <Form.Select onChange={loanTypeChangeHandler} >
-                                        {
-                                            loanTypes.map((loanType, index) => (
-                                                <option key={index} value={loanType} >{loanType}</option>))
-                                        }
-                                    </Form.Select>
+                  {
+                    loanTypes.map((loanType, index) => (
+                      <option key={index} value={loanType} >{loanType}</option>))
+                  }
+                </Form.Select>
                 {/* <Form.Control required type="text" placeholder="Property" value={loanType} onChange={loanTypeChangeHandler} />*/}
-              </Form.Group> 
+              </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Loan Duration: </Form.Label>

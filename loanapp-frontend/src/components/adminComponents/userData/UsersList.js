@@ -43,6 +43,7 @@ export default function UsersList() {
     return (
       <div>
         <h3 className='white-text'>Customer Master Data</h3>
+        <br></br>
         <Button onClick={() => navigate("./add")}>Add customer</Button>
 
         <Outlet />
@@ -51,10 +52,11 @@ export default function UsersList() {
         <br></br>
 
         <div className='container'>
-          <Container className="error-container">
+          <Container className='empty-list-container'>
             <Row>
               <Col md={8} className="mx-auto text-center">
-                <h1 className="display-4">No data to Display</h1>
+                <h3 className="display-4">No data to Display</h3>
+                <br></br>
                 <p className="lead">Try adding by clicking on the above button</p>
               </Col>
             </Row>

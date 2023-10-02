@@ -245,41 +245,6 @@ export default function EditUserData() {
           </Modal.Body>
         </Modal.Dialog>
       </div>
-      {/* <form onSubmit={submitActionHandler}>
-            <p>
-            <label>Employee Id: <input type="text" value={id} disabled></input></label>
-            </p>
-
-            <p>
-            <label>Password: <input type="password" value={password} onChange={passwordChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Full Name: <input type="text" value={name} onChange={nameChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Designation: <input type="text" value={designation} onChange={designationChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Department <input type="text" value={department} onChange={deptChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Date of Birth: <input type="date" value={dob} onChange={dobChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Date of Joining: <input type="date" value={doj} onChange={dojChangeHandler}></input></label>
-            </p>
-
-            <p>
-            <label>Gender <input type="text" value={gender} onChange={genderChangeHandler}></input></label>
-            </p>
-
-            <button type="submit">Register</button>
-        </form> */}
     </>
   )
 }

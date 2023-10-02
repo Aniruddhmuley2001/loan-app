@@ -116,11 +116,12 @@ export default function ViewItems() {
 
           {
             itemsWithIssueId.length === 0 &&
-            <Container className="error-container">
+            <Container className="empty-list-container">
               <Row>
                 <Col md={8} className="mx-auto text-center">
-                  <h1 className="display-4">No data to display</h1>
-                  <p className="lead">Try applying for a Loan</p>
+                  <h3 className="display-4">No data to display</h3>
+                  <br></br>
+                  <p className="lead">Try applying for a loan</p>
                 </Col>
               </Row>
             </Container>
