@@ -143,7 +143,7 @@ export default function UserForm(props) {
         .then((response) => {
           if (response.data === "User saved successfuly.") {
             toast.success("Employee " + name + " added!", { autoClose: 1500 });
-            sessionStorage.setItem("emp_id", id);
+            
             navigate("/admin/" + adminId + "/customers")
           }
           else if (response.data === "User already exists.") {

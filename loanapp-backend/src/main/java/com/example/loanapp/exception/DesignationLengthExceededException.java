@@ -4,7 +4,8 @@ public class DesignationLengthExceededException extends Exception{
 
 	private static final long serialVersionUID = 1L;
 
-	public DesignationLengthExceededException(String message) {
+	public DesignationLengthExceededException(String message) 
+{
 	        super(message);
 	    }
 }

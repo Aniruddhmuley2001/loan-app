@@ -1,18 +1,34 @@
 import React from 'react';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Modal, Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
 export default function AddLoanData() {
+  const itemCategoryURL = "http://localhost:7000/allItemCategories";
   const baseURL = "http://localhost:7000/saveLoan";
   const navigate = useNavigate();
   const adminId = sessionStorage.getItem("emp_id");
   const [loanId, setLoanId] = useState("")
   const [loanType, setLoanType] = useState("")
+  const [loanTypes, setLoanTypes] = useState([])
   const [loanDuration, setLoanDuration] = useState("")
 
+  useEffect(() => {
+    const data = async () => {
+        const response = await fetch(itemCategoryURL);
+       
+        const json = await response.json();
+        if (response.status === 200) {
+            setLoanTypes(json);
+            setLoanType(json[0]);
+        } else {
+          setLoanTypes([]);
+        }
+    };
+    data();
+}, []);
   const loanIdChangeHandler = (event) => {
     setLoanId(event.target.value);
   }
@@ -72,8 +88,14 @@ export default function AddLoanData() {
 
               <Form.Group className="mb-3" controlId="formBasic">
                 <Form.Label>Loan Type: </Form.Label>
-                <Form.Control required type="text" placeholder="Property" value={loanType} onChange={loanTypeChangeHandler} />
-              </Form.Group>
+                <Form.Select onChange={loanTypeChangeHandler} >
+                                        {
+                                            loanTypes.map((loanType, index) => (
+                                                <option key={index} value={loanType} >{loanType}</option>))
+                                        }
+                                    </Form.Select>
+                {/* <Form.Control required type="text" placeholder="Property" value={loanType} onChange={loanTypeChangeHandler} />*/}
+              </Form.Group> 
 
               <Form.Group className="mb-3" controlId="formBasicItemCategory">
                 <Form.Label>Loan Duration: </Form.Label>

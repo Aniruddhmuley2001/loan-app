@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { toast } from 'react-toastify';
+import { useParams } from 'react-router-dom';
 
 
 const ApplyLoan = () => {
@@ -14,10 +15,8 @@ const ApplyLoan = () => {
     // const applyLoanURL = "http://localhost:7000/applyLoan";
 
     const empId = sessionStorage.getItem("emp_id");
-
-    if (empId === null) {
-        navigate("/login");
-    }
+    
+   
 
     const [category, setCategory] = useState("");
     const [itemMake, setItemMake] = useState("");
@@ -31,6 +30,7 @@ const ApplyLoan = () => {
     useEffect(() => {
         const data = async () => {
             const response = await fetch(itemCategoryURL);
+           
             const json = await response.json();
             if (response.status === 200) {
                 setCategories(json);
@@ -101,7 +101,8 @@ const ApplyLoan = () => {
         // getItemValue();
     }
 
-    function submitHandler() {
+    function submitHandler() { 
+
         const submitLoan = async () => {
             const response = await fetch(
                 `http://localhost:7000/applyLoan`,
@@ -119,8 +120,11 @@ const ApplyLoan = () => {
                     }),
                 }
             );
+            console.log("dkmlcsd")
             const json = await response.json();
-            // console.log(json);
+            console.log(response);
+            console.log("dkmlcsd")
+            console.log(json);
             if (response.status === 200) {
                 toast.success('Loan Applied Successfully!', { autoClose: 1500 });
             } else {
@@ -146,20 +150,22 @@ const ApplyLoan = () => {
                                 <Form.Control type="text" placeholder="Enter ID" value={empId} disabled />
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicID">
+                            <Form.Group className="mb-3" controlId="formBasicCategory">
                                 <Form.Label>Item Category:
+                                
                                     <Form.Select onChange={itemCategoryChangeHandler} >
                                         {
                                             categories.map((category, index) => (
                                                 <option key={index} value={category} >{category}</option>))
                                         }
                                     </Form.Select>
+                                    
 
                                 </Form.Label>
 
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicID">
+                            <Form.Group className="mb-3" controlId="formBasicMake">
                                 <Form.Label>Item Make:
                                     <Form.Select onChange={itemMakeChangeHandler} >
                                         {
@@ -172,7 +178,7 @@ const ApplyLoan = () => {
 
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicID">
+                            <Form.Group className="mb-3" controlId="formBasicDescription">
                                 <Form.Label>Item Description:
                                     <Form.Select onChange={itemDescriptionChangeHandler} >
                                         {
@@ -185,7 +191,7 @@ const ApplyLoan = () => {
 
                             </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicID">
+                            <Form.Group className="mb-3" controlId="formBasicValue">
                                 <Form.Label>Item value: </Form.Label>
                                 <Form.Control type="number" placeholder="Item value" value={item?.itemValue} />
                                 {/* <div>Item value: {item?.itemValue}</div>                */}
