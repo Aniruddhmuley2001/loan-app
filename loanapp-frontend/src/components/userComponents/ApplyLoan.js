@@ -15,8 +15,8 @@ const ApplyLoan = () => {
     // const applyLoanURL = "http://localhost:7000/applyLoan";
 
     const empId = sessionStorage.getItem("emp_id");
-    
-   
+
+
 
     const [category, setCategory] = useState("");
     const [itemMake, setItemMake] = useState("");
@@ -30,7 +30,7 @@ const ApplyLoan = () => {
     useEffect(() => {
         const data = async () => {
             const response = await fetch(itemCategoryURL);
-           
+
             const json = await response.json();
             if (response.status === 200) {
                 setCategories(json);
@@ -101,7 +101,7 @@ const ApplyLoan = () => {
         // getItemValue();
     }
 
-    function submitHandler() { 
+    function submitHandler() {
 
         const submitLoan = async () => {
             const response = await fetch(
@@ -151,44 +151,34 @@ const ApplyLoan = () => {
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicCategory">
-                                <Form.Label>Item Category:
-                                
-                                    <Form.Select onChange={itemCategoryChangeHandler} >
-                                        {
-                                            categories.map((category, index) => (
-                                                <option key={index} value={category} >{category}</option>))
-                                        }
-                                    </Form.Select>
-                                    
-
-                                </Form.Label>
-
+                                <Form.Label>Item Category: </Form.Label>
+                                <Form.Select onChange={itemCategoryChangeHandler} >
+                                    {
+                                        categories.map((category, index) => (
+                                            <option key={index} value={category} >{category}</option>))
+                                    }
+                                </Form.Select>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicMake">
-                                <Form.Label>Item Make:
-                                    <Form.Select onChange={itemMakeChangeHandler} >
-                                        {
-                                            makeArr.map((make, index) => (
-                                                <option key={index} value={make} >{make}</option>))
-                                        }
-                                    </Form.Select>
-
-                                </Form.Label>
+                                <Form.Label>Item Make: </Form.Label>
+                                <Form.Select onChange={itemMakeChangeHandler} >
+                                    {
+                                        makeArr.map((make, index) => (
+                                            <option key={index} value={make} >{make}</option>))
+                                    }
+                                </Form.Select>
 
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicDescription">
-                                <Form.Label>Item Description:
-                                    <Form.Select onChange={itemDescriptionChangeHandler} >
-                                        {
-                                            description.map((desc, index) => (
-                                                <option key={index} value={desc} >{desc}</option>))
-                                        }
-                                    </Form.Select>
-
-                                </Form.Label>
-
+                                <Form.Label>Item Description: </Form.Label>
+                                <Form.Select onChange={itemDescriptionChangeHandler} >
+                                    {
+                                        description.map((desc, index) => (
+                                            <option key={index} value={desc} >{desc}</option>))
+                                    }
+                                </Form.Select>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicValue">
