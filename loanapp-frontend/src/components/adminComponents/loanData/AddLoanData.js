@@ -10,7 +10,7 @@ export default function AddLoanData() {
   const baseURL = "http://localhost:7000/saveLoan";
   const navigate = useNavigate();
   const adminId = sessionStorage.getItem("emp_id");
-  const [loanId, setLoanId] = useState("")
+  const [loanId, setLoanId] = useState("23")
   const [loanType, setLoanType] = useState("")
   const [loanTypes, setLoanTypes] = useState([])
   const [loanDuration, setLoanDuration] = useState("")
@@ -81,10 +81,10 @@ export default function AddLoanData() {
           <Modal.Body>
             <Form onSubmit={submitActionHandler}>
 
-              <Form.Group className="mb-3" controlId="formBasicID">
+              {/* <Form.Group className="mb-3" controlId="formBasicID">
                 <Form.Label>Loan ID</Form.Label>
                 <Form.Control type="number" placeholder="123456" value={loanId} onChange={loanIdChangeHandler} />
-              </Form.Group>
+              </Form.Group> */}
 
               <Form.Group className="mb-3" controlId="formBasic">
                 <Form.Label>Loan Type: </Form.Label>

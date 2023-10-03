@@ -1,13 +1,14 @@
-body {
+body, html {
   margin: 0;
-  height: 100vh;
+  /* height: 100vh; */
   font-family: -apple-system, BlinkMacSystemFont,  'Helvetica Neue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-size: cover; 
+  background-size: stretch; 
   background-color: #0093E9;
   background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 code {

@@ -24,13 +24,14 @@ export default function EditItemData() {
     axios.get(getItemBaseURL).then((response) => {
       let item = response.data;
       setItemId(item.itemId);
-      setItemStatus(item.itemIssueStatus);
+      setItemStatus(item.issueStatus===true ? "Y" : "N");
       setItemDescription(item.itemDescription);
       setItemMake(item.itemMake);
       setItemCategory(item.itemCategory);
       setItemValue(item.itemValue);
     }).catch(error => {
-      alert("Error Ocurred while loading items data:" + error);
+      toast.error("Error Ocurred while loading items data", {autoClose: 1500});
+      console.log(error);
     });
   }
 
@@ -65,7 +66,7 @@ export default function EditItemData() {
   const submitActionHandler = (event) => {
     event.preventDefault();
     if (itemValue <= 0) {
-      alert('Please enter valid value');
+      toast.error('Please enter valid value', {autoClose: 1500});
     }
     else {
 
