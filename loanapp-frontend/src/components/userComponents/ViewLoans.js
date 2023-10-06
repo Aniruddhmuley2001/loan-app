@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import { toast } from 'react-toastify';
 
 export default function ViewLoans() {
   const empId = sessionStorage.getItem("emp_id");
@@ -14,7 +15,7 @@ export default function ViewLoans() {
     axios.get(fetchUserDetailsBaseURL).then((response) => {
       setUserDetails(response.data);
     }).catch(error => {
-      alert("Error Ocurred while loading User Data: " + error);
+      toast.error("Error Ocurred while loading User Data: " + error);
     })
   }
 
@@ -22,7 +23,7 @@ export default function ViewLoans() {
     axios.get(fetchLoansURL).then((response) => {
       setLoanDetails(response.data);
     }).catch(error => {
-      alert("Error Ocurred while fetching Loans Data:" + error);
+      toast.error("Error Ocurred while fetching Loans Data: " + error);
     });
   }
 

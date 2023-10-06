@@ -38,7 +38,7 @@ const AdminLogin = () => {
           toast.error('Invalid credentials', { autoClose: 3000 });
         }
       }).catch(error => {
-        alert("error===" + error);
+        toast.error("Failed to login: " + error);
       });
 
   };

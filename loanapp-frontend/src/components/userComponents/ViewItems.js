@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import { toast } from 'react-toastify';
 
 export default function ViewItems() {
   const empId = sessionStorage.getItem("emp_id");
@@ -14,7 +15,7 @@ export default function ViewItems() {
     axios.get(fetchUserDetailsBaseURL).then((response) => {
       setUserDetails(response.data);
     }).catch(error => {
-      alert("Error Occured while loaing User Data: " + error);
+      toast.error("Error Occured while loaing Items: " + error);
     })
   }
 
@@ -22,7 +23,7 @@ export default function ViewItems() {
     axios.get(fetchItemsPurchasedBaseURL).then((response) => {
       setItemDetails(response.data);
     }).catch(error => {
-      alert("Error Ocurred while loading data:" + error);
+      toast.error("Error Ocurred while loading data:" + error);
     });
   }
 

@@ -154,11 +154,11 @@ const Register = () => {
             navigate("/user/login");
           }
           else {
-            toast.error("Registration unsuccessful");
+            toast.error("Registration unsuccessful", {autoClose: 1500});
           }
         }).catch(error => {
           console.log(error);
-          alert("error===" + error.response.data.message);
+          toast.error("Failed to register: " + error.response.data.message);
         });
 
     }
